@@ -12141,4 +12141,6 @@
     <!-- Summary text for swapping the back and recents buttons in the navigation bar. [CHAR LIMIT=NONE] -->
     <string name="swap_back_recents_summary">Swap the back and recents button in the navigation bar.</string>
 
+    <!-- App details: open play store link if app is user installed -->
+    <string name="app_play_store">Google Play</string>
 </resources>
