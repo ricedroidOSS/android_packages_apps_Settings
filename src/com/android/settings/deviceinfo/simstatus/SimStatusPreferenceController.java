@@ -111,15 +111,7 @@ public class SimStatusPreferenceController extends BasePreferenceController {
             multiSimPreference.setKey(mSlotSimStatus.getPreferenceKey(simSlotNumber));
             multiSimPreference.setIcon(R.drawable.ic_sim_card);
             TelephonyManager mTelephonyManager = mContext.getSystemService(TelephonyManager.class);
-            if (mTelephonyManager.getPhoneCount() < 2) {
-                multiSimPreference.setLayoutResource(AdaptivePreferenceUtils.getLayoutResourceId(mContext, "top", false));
-            } else {
-                if (simSlotNumber == 0) {
-                    multiSimPreference.setLayoutResource(AdaptivePreferenceUtils.getLayoutResourceId(mContext, "top", false));
-                } else {
-                    multiSimPreference.setLayoutResource(AdaptivePreferenceUtils.getLayoutResourceId(mContext, "middle", false));
-                }
-            }
+            multiSimPreference.setLayoutResource(AdaptivePreferenceUtils.getLayoutResourceId(mContext, "middle", false));
             category.addPreference(multiSimPreference);
         }
     }
