@@ -502,4 +502,7 @@ public class Settings extends SettingsActivity {
     public static class PersonalizationsToolboxActivity extends SettingsActivity {}
     
     public static class PersonalizationsThemesActivity extends SettingsActivity {}
+
+    // SleepMode
+    public static class SleepModeActivity extends SettingsActivity {}
 }
