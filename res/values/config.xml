@@ -296,7 +296,13 @@
     <string name="config_contextual_card_feedback_email" translatable="false"></string>
 
     <!-- ComponentName to launch a vendor-specific enrollment activity if available -->
-    <string name="config_face_enroll" translatable="false"></string>
+    <string name="config_face_enroll" translatable="false">com.android.settings/com.android.settings.biometrics.face.FaceEnrollActivityDirector</string>
+
+    <!-- Whether or not to use traffic light enroll -->
+    <bool name="config_face_enroll_use_traffic_light">false</bool>
+
+    <!-- Traffic light package to use -->
+    <string name="config_face_enroll_traffic_light_package"></string>
 
     <!-- ComponentName to launch a vendor-specific posture guidance activity if available -->
     <string name="config_face_enroll_guidance_page" translatable="false"></string>
