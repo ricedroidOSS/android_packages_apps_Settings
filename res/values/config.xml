@@ -839,4 +839,7 @@
 
     <!-- Package name for diagnostics app. -->
     <string name="config_device_diagnostics_package_name" translatable="false">com.android.devicediagnostics</string>
+
+    <!-- Does the device support color inversion -->
+    <bool name="config_displayInversionAvailable">true</bool>
 </resources>
