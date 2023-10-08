@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2023 Rising OS Android Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Category Title text for back gesture edge lock. [CHAR LIMIT=60] -->
+    <string name="gesture_navigation_settings_category_title">Gesure navigation settings</string>
+    <!-- Title text for immersive ui lock. [CHAR LIMIT=60] -->
+    <string name="lock_immersive_system_ui_title">Immersive UI Lock</string>
+    <!-- Summary text for immersive ui lock. [CHAR LIMIT=NONE] -->
+    <string name="lock_immersive_system_ui_summary">Disable Translucent StatusBar and NavigationBar on Immersive mode.</string>
+    <!-- Title text for back gesture edge lock. [CHAR LIMIT=60] -->
+    <string name="lock_edge_back_gesture_title">Back Gesture Edge Lock</string>
+    <!-- Summary text for sback gesture edge lock. [CHAR LIMIT=NONE] -->
+    <string name="lock_edge_back_gesture_summary">Disable swipe left/right edge on Gesture Navigation mode.</string>
+</resources>
