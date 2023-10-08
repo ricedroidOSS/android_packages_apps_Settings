@@ -117,6 +117,26 @@
             settings:textEnd="@string/high_label"/>
     </PreferenceCategory>
 
+    <PreferenceCategory
+        android:key="gesture_navigation_settings_category"
+        android:persistent="false"
+        android:title="@string/gesture_navigation_settings_category_title">
+
+        <SwitchPreferenceCompat
+            android:key="lock_immersive_system_ui"
+            android:title="@string/lock_immersive_system_ui_title"
+            android:summary="@string/lock_immersive_system_ui_summary"
+            settings:controller="com.android.settings.gestures.ImmersiveModeSettingsAssistController"
+        />
+
+        <SwitchPreferenceCompat
+            android:key="lock_edge_back_gesture"
+            android:title="@string/lock_edge_back_gesture_title"
+            android:summary="@string/lock_edge_back_gesture_summary"
+            settings:controller="com.android.settings.gestures.EdgeBackSettingsAssistController"
+        />
+    </PreferenceCategory>
+
     <com.android.settingslib.widget.FooterPreference
         android:key="gesture_navigation_settings_footer"
         android:title="@string/back_sensitivity_dialog_message"
