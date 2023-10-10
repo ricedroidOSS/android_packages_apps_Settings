@@ -71,6 +71,16 @@ public class NightDisplayPreferenceController extends TogglePreferenceController
     public void displayPreference(PreferenceScreen screen) {
         super.displayPreference(screen);
         mPreference = screen.findPreference(getPreferenceKey());
+        if (mColorDisplayManager.isDisplayWhiteBalanceAvailable(mContext)) {
+            mPreference.setLayoutResource(R.layout.top_level_preference_middle_card);
+        } else {
+            if (mContext.getSystemService(ColorDisplayManager.class).isDeviceColorManaged() 
+                && !mColorDisplayManager.areAccessibilityTransformsEnabled(mContext)) {
+                mPreference.setLayoutResource(R.layout.top_level_preference_top_card);
+            } else {
+                mPreference.setLayoutResource(R.layout.settings_preference_solo_card);
+            }
+        }
     }
 
     @Override

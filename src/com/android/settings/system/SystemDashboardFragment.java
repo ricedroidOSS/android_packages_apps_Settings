@@ -32,7 +32,10 @@ import com.android.settings.search.BaseSearchIndexProvider;
 import com.android.settingslib.search.SearchIndexable;
 
 import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
+
+import com.android.settings.preferences.ui.PreferenceUtils;
 
 @SearchIndexable
 public class SystemDashboardFragment extends DashboardFragment {
@@ -52,6 +55,7 @@ public class SystemDashboardFragment extends DashboardFragment {
         }
 
         showRestrictionDialog();
+        PreferenceUtils.setLayoutResources(PreferenceUtils.getAllPreferences(screen));
     }
 
     @VisibleForTesting

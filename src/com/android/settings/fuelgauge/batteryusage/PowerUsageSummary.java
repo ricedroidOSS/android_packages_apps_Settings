@@ -30,6 +30,8 @@ import androidx.annotation.VisibleForTesting;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.Loader;
 import androidx.preference.Preference;
+import androidx.preference.PreferenceGroup;
+import androidx.preference.PreferenceScreen;
 
 import com.android.settings.R;
 import com.android.settings.SettingsActivity;
@@ -48,6 +50,8 @@ import com.android.settingslib.search.SearchIndexable;
 import com.android.settingslib.widget.LayoutPreference;
 
 import java.util.List;
+
+import com.android.settings.preferences.ui.PreferenceUtils;
 
 /**
  * Displays a list of apps and subsystems that consume power, ordered by how much power was consumed
@@ -171,6 +175,21 @@ public class PowerUsageSummary extends PowerUsageBase implements
         }
         mBatteryTipPreferenceController.restoreInstanceState(icicle);
         updateBatteryTipFlag(icicle);
+        setupExtraPreferences();
+    }
+
+    private void setupExtraPreferences() {
+        final PreferenceGroup screen = getPreferenceScreen();
+        if (screen == null) return;
+        final List<Preference> allPreferences = PreferenceUtils.getAllPreferences(screen);
+        for (Preference preference : allPreferences) {
+            if (preference != null && preference.getKey() != null) {
+                boolean isBatteryWidgetPreference = preference.getKey().equals("dashboard_tile_pref_com.google.android.settings.intelligence.modules.batterywidget.impl.BatteryWidgetPromoActivity");
+                if (isBatteryWidgetPreference) {
+                    preference.setLayoutResource(R.layout.top_level_preference_solo_card);
+                }
+            }
+        }
     }
 
     @Override

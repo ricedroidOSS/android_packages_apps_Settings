@@ -18,7 +18,12 @@ package com.android.settings.applications;
 
 import android.app.settings.SettingsEnums;
 import android.content.Context;
+import android.os.Bundle;
 import android.provider.SearchIndexableResource;
+
+import androidx.preference.Preference;
+import androidx.preference.PreferenceCategory;
+import androidx.preference.PreferenceGroup;
 
 import com.android.settings.R;
 import com.android.settings.dashboard.DashboardFragment;
@@ -64,6 +69,12 @@ public class AppDashboardFragment extends DashboardFragment {
     }
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setupExtraPreferences();
+    }
+
+    @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         use(SpecialAppAccessPreferenceController.class).setSession(getSettingsLifecycle());
@@ -74,6 +85,34 @@ public class AppDashboardFragment extends DashboardFragment {
         final HibernatedAppsPreferenceController hibernatedAppsPreferenceController =
                 use(HibernatedAppsPreferenceController.class);
         getSettingsLifecycle().addObserver(hibernatedAppsPreferenceController);
+    }
+
+    private void setupExtraPreferences() {
+        final PreferenceGroup screen = getPreferenceScreen();
+        if (screen == null) return;
+        final List<Preference> allPreferences = getAllPreferences(screen);
+        for (Preference preference : allPreferences) {
+            if (preference.getKey() != null) {
+                boolean isAssistPreference = preference.getKey().equals("dashboard_tile_pref_com.google.android.apps.gsa.staticplugins.settings.AssistantAndroidSettingsActivity");
+                boolean isWellbeingPreference = preference.getKey().equals("dashboard_tile_pref_com.google.android.apps.wellbeing.home.AppsNotificationSettingsActivity");
+                boolean isQsPreference = preference.getKey().equals("persist.sys.default_launcher");
+                if (isAssistPreference || isWellbeingPreference || isQsPreference) {
+                    preference.setLayoutResource(R.layout.top_level_preference_middle_card);
+                }
+            }
+        }
+    }
+
+    private List<Preference> getAllPreferences(PreferenceGroup preferenceGroup) {
+        List<Preference> preferences = new ArrayList<>();
+        for (int i = 0; i < preferenceGroup.getPreferenceCount(); i++) {
+            Preference preference = preferenceGroup.getPreference(i);
+            preferences.add(preference);
+            if (preference instanceof PreferenceGroup) {
+                preferences.addAll(getAllPreferences((PreferenceGroup) preference));
+            }
+        }
+        return preferences;
     }
 
     @Override

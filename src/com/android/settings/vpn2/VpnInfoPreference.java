@@ -28,12 +28,13 @@ import androidx.preference.PreferenceViewHolder;
 import com.android.settings.R;
 import com.android.settingslib.HelpUtils;
 import com.android.settingslib.RestrictedPreference;
+import com.android.settings.preferences.ui.AdaptiveRestrictedPreference;
 
 
 /**
  * A preference with an Info icon on the side
  */
-public class VpnInfoPreference extends RestrictedPreference implements View.OnClickListener {
+public class VpnInfoPreference extends AdaptiveRestrictedPreference implements View.OnClickListener {
 
     private boolean mIsInsecureVpn = false;
     private String mHelpUrl;
@@ -68,10 +69,6 @@ public class VpnInfoPreference extends RestrictedPreference implements View.OnCl
             icon.setOnClickListener(this);
             icon.setEnabled(false);
         }
-
-        // Hide the divider from view
-        final View divider = holder.findViewById(R.id.two_target_divider);
-        divider.setVisibility(View.GONE);
     }
 
     @Override

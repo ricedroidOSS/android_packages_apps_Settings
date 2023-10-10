@@ -29,6 +29,11 @@ import android.os.Handler;
 import android.os.Looper;
 import android.provider.Settings;
 
+import androidx.preference.Preference;
+import androidx.preference.PreferenceCategory;
+import androidx.preference.PreferenceGroup;
+import androidx.preference.PreferenceScreen;
+
 import androidx.annotation.VisibleForTesting;
 
 import com.android.settings.R;
@@ -94,6 +99,47 @@ public class LockscreenDashboardFragment extends DashboardFragment
                 R.string.locked_work_profile_notification_title);
         replaceEnterpriseStringTitle("security_setting_lock_screen_notif_work_header",
                 WORK_PROFILE_NOTIFICATIONS_SECTION_HEADER, R.string.profile_section_header);
+        setupExtraPreferences();
+    }
+
+    private void setupExtraPreferences() {
+        final PreferenceCategory generalLSCategory = findPreference("lockscreen_what_to_show");
+        final PreferenceGroup screen = getPreferenceScreen();
+        if (screen == null) return;
+        int quickAffordancesOrder = -1;
+        for (int i = 0; i < generalLSCategory.getPreferenceCount(); i++) {
+            Preference preference = generalLSCategory.getPreference(i);
+            if ("customizable_lock_screen_quick_affordances".equals(preference.getKey())) {
+                quickAffordancesOrder = preference.getOrder();
+                break;
+            }
+        }
+        final List<Preference> allPreferences = getAllPreferences(screen);
+        for (Preference preference : allPreferences) {
+            if (preference.getKey() != null) {
+                boolean isAmbMusicPreference = preference.getKey().equals("dashboard_tile_pref_com.google.intelligence.sense.ambientmusic.AmbientMusicNotificationsSettingsActivity");
+                if (isAmbMusicPreference) {
+                    preference.setLayoutResource(R.layout.top_level_preference_middle_card);
+                    getPreferenceScreen().removePreference(preference);
+                    generalLSCategory.addPreference(preference);
+                }
+                if (isAmbMusicPreference) {
+                    preference.setOrder(quickAffordancesOrder + 1);
+                }
+            }
+        }
+    }
+
+    private List<Preference> getAllPreferences(PreferenceGroup preferenceGroup) {
+        List<Preference> preferences = new ArrayList<>();
+        for (int i = 0; i < preferenceGroup.getPreferenceCount(); i++) {
+            Preference preference = preferenceGroup.getPreference(i);
+            preferences.add(preference);
+            if (preference instanceof PreferenceGroup) {
+                preferences.addAll(getAllPreferences((PreferenceGroup) preference));
+            }
+        }
+        return preferences;
     }
 
     @Override

@@ -31,6 +31,7 @@ import android.os.UserHandle;
 import androidx.annotation.VisibleForTesting;
 import androidx.fragment.app.Fragment;
 import androidx.preference.Preference;
+import androidx.preference.PreferenceGroup;
 import androidx.preference.PreferenceScreen;
 
 import com.android.settings.R;
@@ -81,6 +82,36 @@ public class ConfigureNotificationSettings extends DashboardFragment implements
         replaceEnterpriseStringSummary("lock_screen_work_redact",
                 WORK_PROFILE_LOCK_SCREEN_REDACT_NOTIFICATION_SUMMARY,
                 R.string.lock_screen_notifs_redact_work_summary);
+        setupExtraPreferences();
+    }
+
+    private void setupExtraPreferences() {
+        final PreferenceGroup screen = getPreferenceScreen();
+        if (screen == null) return;
+        final List<Preference> allPreferences = getAllPreferences(screen);
+        for (Preference preference : allPreferences) {
+            if (preference.getKey() != null) {
+                boolean isLsNotifPref = preference.getKey().equals(KEY_LOCKSCREEN);
+                boolean isRedactPref = preference.getKey().equals("lock_screen_redact");
+                if (isLsNotifPref) {
+                    preference.setLayoutResource(R.layout.top_level_preference_middle_card);
+                } else if (isRedactPref) {
+                    preference.setLayoutResource(R.layout.top_level_preference_bottom_card);
+                }
+            }
+        }
+    }
+
+    private List<Preference> getAllPreferences(PreferenceGroup preferenceGroup) {
+        List<Preference> preferences = new ArrayList<>();
+        for (int i = 0; i < preferenceGroup.getPreferenceCount(); i++) {
+            Preference preference = preferenceGroup.getPreference(i);
+            preferences.add(preference);
+            if (preference instanceof PreferenceGroup) {
+                preferences.addAll(getAllPreferences((PreferenceGroup) preference));
+            }
+        }
+        return preferences;
     }
 
     @Override

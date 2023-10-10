@@ -19,6 +19,7 @@ package com.android.settings.gestures;
 import android.app.settings.SettingsEnums;
 import android.content.Context;
 import android.hardware.display.AmbientDisplayConfiguration;
+import android.os.Bundle;
 
 import com.android.settings.R;
 import com.android.settings.dashboard.DashboardFragment;
@@ -26,6 +27,8 @@ import com.android.settings.search.BaseSearchIndexProvider;
 import com.android.settingslib.search.SearchIndexable;
 
 import java.util.List;
+
+import com.android.settings.preferences.ui.PreferenceUtils;
 
 @SearchIndexable
 public class GestureSettings extends DashboardFragment {
@@ -48,6 +51,12 @@ public class GestureSettings extends DashboardFragment {
     @Override
     protected int getPreferenceScreenResId() {
         return R.xml.gestures;
+    }
+
+    @Override
+    public void onCreate(Bundle icicle) {
+        super.onCreate(icicle);
+        PreferenceUtils.setLayoutResources(PreferenceUtils.getAllPreferences(getPreferenceScreen()));
     }
 
     @Override

@@ -69,6 +69,7 @@ public class DarkUIPreferenceController extends TogglePreferenceController imple
     public void displayPreference(PreferenceScreen screen) {
         super.displayPreference(screen);
         mPreference = screen.findPreference(getPreferenceKey());
+        mPreference.setLayoutResource(R.layout.top_level_preference_top_card);
     }
 
     @Override

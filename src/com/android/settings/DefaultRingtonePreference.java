@@ -24,6 +24,8 @@ import android.net.Uri;
 import android.util.AttributeSet;
 import android.util.Log;
 
+import com.android.settings.preferences.ui.AdaptivePreferenceUtils;
+
 import androidx.annotation.VisibleForTesting;
 
 public class DefaultRingtonePreference extends RingtonePreference {
@@ -31,6 +33,7 @@ public class DefaultRingtonePreference extends RingtonePreference {
 
     public DefaultRingtonePreference(Context context, AttributeSet attrs) {
         super(context, attrs);
+        setLayoutResource(AdaptivePreferenceUtils.getLayoutResourceId(context, attrs));
     }
 
     @Override
