@@ -65,3 +65,10 @@
 -keep class androidx.window.extensions.** { *; }
 -dontwarn androidx.window.extensions.**
 -keep class androidx.window.** { *; }
+
+# Custom rules
+-keep class android.frameworks.** { *; }
+-keep class android.hardware.** { *; }
+-keep class com.google.** { *; }
+-keep class vendor.** { *; }
+-keep class hardware.google.** { *; }
