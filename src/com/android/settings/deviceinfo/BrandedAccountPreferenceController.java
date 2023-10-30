@@ -37,11 +37,18 @@ import com.android.settings.network.SubscriptionUtil;
 public class BrandedAccountPreferenceController extends BasePreferenceController {
     private final AccountFeatureProvider mAccountFeatureProvider;
     private Account[] mAccounts;
+    private Preference mAccountPreference;
+    private int tapCount = 0;
 
     public BrandedAccountPreferenceController(Context context, String key) {
         super(context, key);
         mAccountFeatureProvider = FeatureFactory.getFactory(mContext).getAccountFeatureProvider();
         mAccounts = mAccountFeatureProvider.getAccounts(mContext);
+    }
+
+    @Override
+    public CharSequence getSummary() {
+        return mContext.getString(R.string.device_info_protected_single_press);
     }
 
     @Override
@@ -60,12 +67,11 @@ public class BrandedAccountPreferenceController extends BasePreferenceController
     public void displayPreference(PreferenceScreen screen) {
         super.displayPreference(screen);
         final Preference accountPreference = screen.findPreference(getPreferenceKey());
+        mAccountPreference = accountPreference;
         if (accountPreference != null && (mAccounts == null || mAccounts.length == 0)) {
             screen.removePreference(accountPreference);
             return;
         }
-
-        accountPreference.setSummary(mAccounts[0].name);
         
         if (!SubscriptionUtil.isSimHardwareVisible(mContext)) {
             accountPreference.setLayoutResource(R.layout.top_level_preference_bottom_card);
@@ -79,21 +85,25 @@ public class BrandedAccountPreferenceController extends BasePreferenceController
         if (!TextUtils.equals(preference.getKey(), getPreferenceKey())) {
             return false;
         }
+        if (tapCount == 0) {
+            mAccountPreference.setSummary(mAccounts[0].name);
+            tapCount++;
+        } else if (tapCount == 1) {
+            final Bundle args = new Bundle();
+            args.putParcelable(AccountDetailDashboardFragment.KEY_ACCOUNT, mAccounts[0]);
+            args.putParcelable(AccountDetailDashboardFragment.KEY_USER_HANDLE,
+                    android.os.Process.myUserHandle());
+            args.putString(AccountDetailDashboardFragment.KEY_ACCOUNT_TYPE,
+                    mAccountFeatureProvider.getAccountType());
 
-        final Bundle args = new Bundle();
-        args.putParcelable(AccountDetailDashboardFragment.KEY_ACCOUNT,
-                mAccounts[0]);
-        args.putParcelable(AccountDetailDashboardFragment.KEY_USER_HANDLE,
-                android.os.Process.myUserHandle());
-        args.putString(AccountDetailDashboardFragment.KEY_ACCOUNT_TYPE,
-                mAccountFeatureProvider.getAccountType());
-
-        new SubSettingLauncher(mContext)
-                .setDestination(AccountDetailDashboardFragment.class.getName())
-                .setTitleRes(R.string.account_sync_title)
-                .setArguments(args)
-                .setSourceMetricsCategory(SettingsEnums.DEVICEINFO)
-                .launch();
+            new SubSettingLauncher(mContext)
+                    .setDestination(AccountDetailDashboardFragment.class.getName())
+                    .setTitleRes(R.string.account_sync_title)
+                    .setArguments(args)
+                    .setSourceMetricsCategory(SettingsEnums.DEVICEINFO)
+                    .launch();
+            tapCount = 0;
+        }
         return true;
     }
 
