@@ -734,4 +734,7 @@
 
     <!-- List of MVNO. Do not translate -->
     <integer-array name="datausage_hiding_carrier_service_carrier_id" translatable="false"/>
+
+    <!-- Whether to show peak refresh rate in display settings -->
+    <bool name="config_show_peak_refresh_rate_switch">false</bool>
 </resources>
