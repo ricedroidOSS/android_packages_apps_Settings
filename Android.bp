@@ -41,6 +41,9 @@ java_library {
     libs: [
         "app-compat-annotations",
     ],
+    optimize: {
+        proguard_flags_files: ["proguard-core.flags"],
+    },
 }
 
 
@@ -54,11 +57,20 @@ android_library {
         "SpaPrivilegedLib-defaults",
     ],
 
-    srcs: ["src/**/*.java", "src/**/*.kt"],
+    srcs: [
+           "src/**/*.java",
+           "src/**/*.kt",
+           "Personalizations/src/**/*.java",
+           "Personalizations/src/**/*.kt"
+    ],
+
+    aaptflags: ["--extra-packages com.rising.settings"],
+
     resource_dirs: [
         "res",
         "res-export", // for external usage
         "res-product",
+        "Personalizations/res",
     ],
     static_libs: [
         "androidx-constraintlayout_constraintlayout",

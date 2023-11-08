@@ -32,6 +32,15 @@
         android:order="-170" />
 
     <com.android.settings.widget.HomepagePreference
+        android:fragment="com.android.settings.personalizationSettingsLayout"
+        android:icon="@drawable/ic_palette_24"
+        android:key="top_level_rising"
+        android:order="-160"
+        android:title="@string/rising_settings_title"
+        android:summary="@string/rising_settings_summary"
+        settings:controller="com.android.settings.TopLevelSettingsPreferenceController"/>
+
+    <com.android.settings.widget.HomepagePreference
         android:fragment="com.android.settings.network.NetworkDashboardFragment"
         android:icon="@drawable/ic_settings_wireless"
         android:key="top_level_network"
