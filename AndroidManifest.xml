@@ -5070,5 +5070,32 @@
             <meta-data android:name="com.android.settings.PRIMARY_PROFILE_CONTROLLED"
                        android:value="true" />
         </activity>
+
+        <!-- Lockscreen Settings -->
+        <activity android:name="Settings$PersonalizationsLockscreenActivity"
+                  android:label="@string/lockscreen_title"
+                  android:icon="@drawable/ic_lock_outline"
+                  android:exported="true">
+            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                       android:value="com.android.settings.fragments.LockScreen" />
+        </activity>
+
+        <!-- ToolBox Settings -->
+        <activity android:name="Settings$PersonalizationsToolboxActivity"
+                  android:label="@string/toolbox_title"
+                  android:icon="@drawable/ic_toolbox_24"
+                  android:exported="true">
+            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                       android:value="com.android.settings.fragments.Toolbox" />
+        </activity>
+
+        <!-- Themes Settings -->
+        <activity android:name="Settings$PersonalizationsThemesActivity"
+                  android:label="@string/themes_title"
+                  android:icon="@drawable/ic_palette_24"
+                  android:exported="true">
+            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                       android:value="com.android.settings.fragments.Themes" />
+        </activity>
     </application>
 </manifest>

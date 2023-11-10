@@ -533,4 +533,10 @@ public class Settings extends SettingsActivity {
     public static class DevRunningServicesActivity extends SettingsActivity { /* empty */ }
     
     public static class personalizationSettingsLayoutActivity extends SettingsActivity {}
+    
+    public static class PersonalizationsLockscreenActivity extends SettingsActivity {}
+    
+    public static class PersonalizationsToolboxActivity extends SettingsActivity {}
+    
+    public static class PersonalizationsThemesActivity extends SettingsActivity {}
 }

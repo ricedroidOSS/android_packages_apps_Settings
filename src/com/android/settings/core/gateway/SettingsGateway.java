@@ -194,6 +194,9 @@ import com.android.settings.wifi.savedaccesspoints2.SavedAccessPointsWifiSetting
 import com.android.settings.wifi.tether.WifiTetherSettings;
 
 import com.android.settings.personalizationSettingsLayout;
+import com.android.settings.fragments.LockScreen;
+import com.android.settings.fragments.Themes;
+import com.android.settings.fragments.Toolbox;
 
 public class SettingsGateway {
 
@@ -376,7 +379,10 @@ public class SettingsGateway {
             LongBackgroundTasksDetails.class.getName(),
             RegionalPreferencesEntriesFragment.class.getName(),
             RunningServices.class.getName(),
-            personalizationSettingsLayout.class.getName()
+            personalizationSettingsLayout.class.getName(),
+            LockScreen.class.getName(),
+            Themes.class.getName(),
+            Toolbox.class.getName()
     };
 
     public static final String[] SETTINGS_FOR_RESTRICTED = {
@@ -426,6 +432,9 @@ public class SettingsGateway {
             Settings.DevRunningServicesActivity.class.getName(),
             Settings.FirmwareVersionActivity.class.getName(),
             Settings.WallpaperSettingsActivity.class.getName(),
-            Settings.personalizationSettingsLayoutActivity.class.getName()
+            Settings.personalizationSettingsLayoutActivity.class.getName(),
+            Settings.PersonalizationsLockscreenActivity.class.getName(),
+            Settings.PersonalizationsToolboxActivity.class.getName(),
+            Settings.PersonalizationsThemesActivity.class.getName()
     };
 }
