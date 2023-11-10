@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:layout_marginStart="@dimen/card_margin_start_aqua"
     android:layout_marginEnd="@dimen/card_margin_end_aqua"
-    android:layout_marginTop="20dp"
+    android:layout_marginTop="0dp"
     android:layout_marginBottom="20dp"
     android:paddingEnd="6dp"
     android:paddingStart="20dp"
