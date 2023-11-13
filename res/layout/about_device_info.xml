@@ -26,6 +26,12 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alpha="0.2"
+                android:background="@drawable/firmware_details_bg" />
+
             <TextView
                 android:id="@+id/firmware_name"
                 android:layout_width="match_parent"
