@@ -25,18 +25,21 @@ import android.content.Context;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.content.pm.UserInfo;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.UserHandle;
 import android.os.UserManager;
+import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.VisibleForTesting;
 import androidx.core.content.ContextCompat;
@@ -70,6 +73,8 @@ import com.android.settingslib.widget.LayoutPreference;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Random;
 
 @SearchIndexable(forTarget = MOBILE)
 public class TopLevelSettings extends DashboardFragment implements SplitLayoutListener,
@@ -188,11 +193,16 @@ public class TopLevelSettings extends DashboardFragment implements SplitLayoutLi
     }
 
     private void initHomepageWidgetsView() {
+        final FragmentActivity activity = getActivity();
         final LayoutPreference bannerPreference =
                         (LayoutPreference) getPreferenceScreen().findPreference("top_level_homepage_banner_view");
         final LayoutPreference widgetPreference =
                         (LayoutPreference) getPreferenceScreen().findPreference("top_level_homepage_widgets");
-        if (bannerPreference != null) {
+        final LayoutPreference searchWidgetPreference =
+                        (LayoutPreference) getPreferenceScreen().findPreference("top_level_search_widget");
+        final boolean enableHomepageWidgets = Settings.System.getIntForUser(getContext().getContentResolver(),
+                "settings_homepage_widgets", 0, UserHandle.USER_CURRENT) != 0;
+        if (bannerPreference != null && enableHomepageWidgets) {
             final ImageView avatarView = bannerPreference.findViewById(R.id.account_avatar);
             avatarView.setImageDrawable(getCircularUserIcon(getActivity()));
             avatarView.bringToFront();
@@ -217,7 +227,7 @@ public class TopLevelSettings extends DashboardFragment implements SplitLayoutLi
                 }
             });
         }
-        if (widgetPreference != null) {
+        if (widgetPreference != null && enableHomepageWidgets) {
             // widgets elements
             final ImageView searchIcon = widgetPreference.findViewById(R.id.search_widget_icon);
             final ImageView systemIcon = widgetPreference.findViewById(R.id.system_widget_icon);
@@ -253,11 +263,88 @@ public class TopLevelSettings extends DashboardFragment implements SplitLayoutLi
                     launchComponent("com.android.settings", "com.android.settings.Settings$StorageDashboardActivity");
                 }
             });
-            final FragmentActivity activity = getActivity();
             if (activity != null) {
                 FeatureFactory.getFactory(activity).getSearchFeatureProvider().initSearchToolbar(activity /* activity */, searchView, (View) searchIcon, SettingsEnums.SETTINGS_HOMEPAGE);
             }
+        } else {
+            if (searchWidgetPreference != null) {
+                final ImageView avatarView = searchWidgetPreference.findViewById(R.id.avatar_widget_icon);
+                avatarView.setImageDrawable(getCircularUserIcon(getActivity()));
+                avatarView.bringToFront();
+                avatarView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        launchComponent("com.android.settings", "com.android.settings.Settings$UserSettingsActivity");
+                    }
+                });
+                final ImageView searchIcon = searchWidgetPreference.findViewById(R.id.search_widget_icon);
+                final View searchView = searchWidgetPreference.findViewById(R.id.search_widget);
+                final TextView searchTextView = searchWidgetPreference.findViewById(R.id.homepage_search_text);
+                searchTextView.setText(getGreetings(getContext(), true));
+                searchIcon.bringToFront();
+                if (activity != null) {
+                    FeatureFactory.getFactory(activity).getSearchFeatureProvider().initSearchToolbar(activity /* activity */, searchView, (View) searchIcon, SettingsEnums.SETTINGS_HOMEPAGE);
+                }
+            }
         }
+    }
+
+    public String getGreetings(Context context, boolean isTitle) {
+        String[] randomMsgSearch = context.getResources().getStringArray(R.array.settings_random);
+        String[] morningMsg = context.getResources().getStringArray(R.array.dashboard_morning);
+        String[] morningMsgGreet = context.getResources().getStringArray(R.array.dashboard_morning_greetings);
+        String[] msgNight = context.getResources().getStringArray(R.array.dashboard_night);
+        String[] msgearlyNight = context.getResources().getStringArray(R.array.dashboard_early_night);
+        String[] msgNoon = context.getResources().getStringArray(R.array.dashboard_noon);
+        String[] msgMN = context.getResources().getStringArray(R.array.dashboard_midnight);
+        String[] msgRandom = context.getResources().getStringArray(R.array.dashboard_random);
+        String[] msgRandomGreet = context.getResources().getStringArray(R.array.dashboard_random_greetings);
+        String greetingsEN = context.getResources().getString(R.string.dashboard_early_night_greeting1);
+        String greetingsN = context.getResources().getString(R.string.dashboard_night_greetings1);
+        String greetingsNoon = context.getResources().getString(R.string.dashboard_noon_greeting1);
+        String random6 = context.getResources().getString(R.string.dashboard_random6);
+        Random genSearchMsg = new Random();
+        int searchRnd = genSearchMsg.nextInt(randomMsgSearch.length-1);
+        String greetings;
+        switch (Calendar.getInstance().get(Calendar.HOUR_OF_DAY)) {
+        case 5: case 6: case 7: case 8: case 9: case 10:
+            Random genMorningMsg = new Random();
+            int morning = genMorningMsg.nextInt(morningMsg.length-1);
+            int morningGreet = genMorningMsg.nextInt(morningMsgGreet.length-1);
+            greetings = isTitle ? morningMsgGreet[morningGreet] : morningMsg[morning];
+            break;
+        case 18: case 19: case 20:
+            Random genmsgeNight = new Random();
+            int eNight = genmsgeNight.nextInt(msgearlyNight.length-1);
+            greetings = isTitle ? greetingsEN : msgearlyNight[eNight];
+            break;
+        case 21: case 22: case 23: case 0:
+            Random genmsgNight = new Random();
+            int night = genmsgNight.nextInt(msgNight.length-1);
+            greetings = isTitle ? greetingsN : msgNight[night];
+            break;
+        case 16: case 17:
+            Random genmsgNoon = new Random();
+            int noon = genmsgNoon.nextInt(msgNoon.length-1);
+            greetings = isTitle ? greetingsNoon : msgNoon[noon];
+            break;
+        case 1: case 2: case 3: case 4:
+            Random genmsgMN = new Random();
+            int mn = genmsgMN.nextInt(msgMN.length-1);
+            int rd = genmsgMN.nextInt(msgRandom.length-1);
+            greetings = isTitle ? msgRandom[rd] : msgMN[mn];
+            break;
+        case 11: case 12: case 13: case 14: case 15:
+            Random genmsgRD = new Random();
+            int randomm = genmsgRD.nextInt(msgRandom.length-1);
+            int randomGreet = genmsgRD.nextInt(msgRandomGreet.length-1);
+            greetings = isTitle ? msgRandom[randomm] : msgRandomGreet[randomGreet];
+            break;
+        default:
+            greetings = "";
+            break;
+        }
+        return greetings + (isTitle ? " " + getOwnerName() + "." : "");
     }
 
     private Drawable getCircularUserIcon(Context context) {
@@ -274,6 +361,13 @@ public class TopLevelSettings extends DashboardFragment implements SplitLayoutLi
                 (int) context.getResources().getDimension(R.dimen.homepage_user_icon_size));
 
         return drawableUserIcon;
+    }
+
+    private String getOwnerName(){
+        final UserManager mUserManager = getSystemService(UserManager.class);
+        final UserInfo userInfo = com.android.settings.Utils.getExistingUser(mUserManager,
+                    UserHandle.of(UserHandle.myUserId()));
+        return userInfo.name != null ? userInfo.name : getString(R.string.default_user);
     }
 
     private void launchComponent(String packageName, String className) {
@@ -334,6 +428,26 @@ public class TopLevelSettings extends DashboardFragment implements SplitLayoutLi
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         super.onCreatePreferences(savedInstanceState, rootKey);
+        final LayoutPreference bannerPreference =
+                        (LayoutPreference) getPreferenceScreen().findPreference("top_level_homepage_banner_view");
+        final LayoutPreference widgetPreference =
+                        (LayoutPreference) getPreferenceScreen().findPreference("top_level_homepage_widgets");
+        final LayoutPreference searchWidgetPreference =
+                        (LayoutPreference) getPreferenceScreen().findPreference("top_level_search_widget");
+        final boolean enableHomepageWidgets = Settings.System.getIntForUser(getContext().getContentResolver(),
+                "settings_homepage_widgets", 0, UserHandle.USER_CURRENT) != 0;
+        if (!enableHomepageWidgets) {
+            if (widgetPreference != null) {
+                getPreferenceScreen().removePreference(widgetPreference);
+            }
+            if (bannerPreference != null) {
+                getPreferenceScreen().removePreference(bannerPreference);
+            }
+        } else {
+            if (searchWidgetPreference != null) {
+                getPreferenceScreen().removePreference(searchWidgetPreference);
+            }
+        }
         int tintColor = Utils.getHomepageIconColor(getContext());
         iteratePreferences(preference -> {
             Drawable icon = preference.getIcon();
@@ -342,7 +456,8 @@ public class TopLevelSettings extends DashboardFragment implements SplitLayoutLi
             }
             String preferenceKey = preference.getKey();
             if (preferenceKey != null && !("top_level_homepage_widgets".equals(preferenceKey) ||
-                                           "top_level_homepage_banner_view".equals(preferenceKey))) {
+                                           "top_level_homepage_banner_view".equals(preferenceKey)|| 
+                                           "top_level_search_widget".equals(preferenceKey))) {
                 setUpPreferenceLayout(preference);
             }
         });

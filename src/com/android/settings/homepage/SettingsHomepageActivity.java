@@ -69,7 +69,7 @@ import android.graphics.drawable.Drawable;
 import com.android.internal.util.UserIcons;
 
 import com.android.settings.R;
-import com.android.settings.Settings;
+import android.provider.Settings;
 import com.android.settings.SettingsActivity;
 import com.android.settings.SettingsApplication;
 import com.android.settings.activityembedding.ActivityEmbeddingRulesController;
@@ -254,88 +254,19 @@ public class SettingsHomepageActivity extends FragmentActivity implements
             }
         });
 
-        boolean messagesEnabled = true;
-	    if (messagesEnabled) {
+        final boolean messagesEnabled = Settings.System.getIntForUser(getApplicationContext().getContentResolver(),
+                "settings_homepage_greetings", 0, UserHandle.USER_CURRENT) != 0;
 	        final View root = findViewById(R.id.settings_homepage_container);
 	        final TextView homepageTitleView = root.findViewById(R.id.homepage_title);
 	        final TextView homepageGreetingsView = root.findViewById(R.id.homepage_greetings);
-
+	    if (messagesEnabled) {
 	        homepageGreetingsView.setVisibility(View.VISIBLE);
 	        homepageTitleView.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimensionPixelSize(R.dimen.header_text_size_contextual));
-
-	        String[] randomMsgSearch = getResources().getStringArray(R.array.settings_random);
-            String[] morningMsg = getResources().getStringArray(R.array.dashboard_morning);
-            String[] morningMsgGreet = getResources().getStringArray(R.array.dashboard_morning_greetings);
-            String[] msgNight = getResources().getStringArray(R.array.dashboard_night);
-            String[] msgearlyNight = getResources().getStringArray(R.array.dashboard_early_night);
-            String[] msgNoon = getResources().getStringArray(R.array.dashboard_noon);
-            String[] msgMN = getResources().getStringArray(R.array.dashboard_midnight);
-            String[] msgRandom = getResources().getStringArray(R.array.dashboard_random);
-            String[] msgRandomGreet = getResources().getStringArray(R.array.dashboard_random_greetings);
-
-            String greetingsEN = getResources().getString(R.string.dashboard_early_night_greeting1);
-            String greetingsN = getResources().getString(R.string.dashboard_night_greetings1);
-            String greetingsNoon = getResources().getString(R.string.dashboard_noon_greeting1);
-            String random6 = getResources().getString(R.string.dashboard_random6);
-
-	        Random genSearchMsg = new Random();
-	        int searchRnd = genSearchMsg.nextInt(randomMsgSearch.length-1);
-
-        switch (Calendar.getInstance().get(Calendar.HOUR_OF_DAY)) {
-            case 5: case 6: case 7: case 8: case 9: case 10:
-
-        	Random genMorningMsg = new Random();
-        	int morning = genMorningMsg.nextInt(morningMsg.length-1);
-        	int morningGreet = genMorningMsg.nextInt(morningMsgGreet.length-1);
-        	homepageTitleView.setText(morningMsgGreet[morningGreet] + " " + getOwnerName() + ".");
-        	homepageGreetingsView.setText(morningMsg[morning]);
-                break;
-
-            case 18: case 19: case 20: 
-        	Random genmsgeNight = new Random();
-        	int eNight = genmsgeNight.nextInt(msgearlyNight.length-1);
-        	homepageTitleView.setText(greetingsEN + " " + getOwnerName() + ".");
-        	homepageGreetingsView.setText(msgearlyNight[eNight]);
-                break;
-                
-            case 21: case 22: case 23: case 0: 
-        	Random genmsgNight = new Random();
-        	int night = genmsgNight.nextInt(msgNight.length-1);
-        	homepageTitleView.setText(greetingsN + " " + getOwnerName() + ".");
-        	homepageGreetingsView.setText(msgNight[night]);
-                break;
-
-             case 16: case 17:
-        	Random genmsgNoon = new Random();
-        	int noon = genmsgNoon.nextInt(msgNoon.length-1);
-        	homepageTitleView.setText(greetingsNoon + " " + getOwnerName() + ".");
-        	homepageGreetingsView.setText(msgNoon[noon]);
-                break;
-
-            case 1: case 2: case 3: case 4:
-        	Random genmsgMN = new Random();
-        	int mn = genmsgMN.nextInt(msgMN.length-1);
-        	int rd = genmsgMN.nextInt(msgRandom.length-1);
-        	homepageTitleView.setText(msgRandom[rd] + " " + getOwnerName() + ".");
-        	homepageGreetingsView.setText(msgMN[mn]);
-                break;
-                
-            case 11: case 12: case 13: case 14: case 15:
-        	Random genmsgRD = new Random();
-        	int randomm = genmsgRD.nextInt(msgRandom.length-1);
-        	int randomGreet = genmsgRD.nextInt(msgRandomGreet.length-1);
-        	homepageTitleView.setText(msgRandom[randomm] + " " + getOwnerName() + ".");
-        	homepageGreetingsView.setText(msgRandomGreet[randomGreet]);
-                break;
-
-            default:
-                break;
-           }
+            homepageTitleView.setText(getGreetings(true));
+            homepageGreetingsView.setText(getGreetings(false));
         } else {
-           final TextView homepageTitleView = findViewById(R.id.homepage_title);
-           final TextView secondarytextView = findViewById(R.id.homepage_greetings);
            homepageTitleView.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimensionPixelSize(R.dimen.header_text_size_default));
-           secondarytextView.setVisibility(View.GONE);
+           homepageGreetingsView.setVisibility(View.GONE);
            homepageTitleView.setText(getResources().getString(R.string.top_level_settings_title));
         }
         // Homepage redesign end
@@ -379,6 +310,64 @@ public class SettingsHomepageActivity extends FragmentActivity implements
         updateSplitLayout();
 
         enableTaskLocaleOverride();
+    }
+
+    public String getGreetings(boolean isTitle) {
+        String[] randomMsgSearch = getResources().getStringArray(R.array.settings_random);
+        String[] morningMsg = getResources().getStringArray(R.array.dashboard_morning);
+        String[] morningMsgGreet = getResources().getStringArray(R.array.dashboard_morning_greetings);
+        String[] msgNight = getResources().getStringArray(R.array.dashboard_night);
+        String[] msgearlyNight = getResources().getStringArray(R.array.dashboard_early_night);
+        String[] msgNoon = getResources().getStringArray(R.array.dashboard_noon);
+        String[] msgMN = getResources().getStringArray(R.array.dashboard_midnight);
+        String[] msgRandom = getResources().getStringArray(R.array.dashboard_random);
+        String[] msgRandomGreet = getResources().getStringArray(R.array.dashboard_random_greetings);
+        String greetingsEN = getResources().getString(R.string.dashboard_early_night_greeting1);
+        String greetingsN = getResources().getString(R.string.dashboard_night_greetings1);
+        String greetingsNoon = getResources().getString(R.string.dashboard_noon_greeting1);
+        String random6 = getResources().getString(R.string.dashboard_random6);
+        Random genSearchMsg = new Random();
+        int searchRnd = genSearchMsg.nextInt(randomMsgSearch.length-1);
+        String greetings;
+        switch (Calendar.getInstance().get(Calendar.HOUR_OF_DAY)) {
+            case 5: case 6: case 7: case 8: case 9: case 10:
+                Random genMorningMsg = new Random();
+                int morning = genMorningMsg.nextInt(morningMsg.length-1);
+                int morningGreet = genMorningMsg.nextInt(morningMsgGreet.length-1);
+                greetings = isTitle ? morningMsgGreet[morningGreet] : morningMsg[morning];
+                break;
+            case 18: case 19: case 20:
+                Random genmsgeNight = new Random();
+                int eNight = genmsgeNight.nextInt(msgearlyNight.length-1);
+                greetings = isTitle ? greetingsEN : msgearlyNight[eNight];
+                break;
+            case 21: case 22: case 23: case 0:
+                Random genmsgNight = new Random();
+                int night = genmsgNight.nextInt(msgNight.length-1);
+                greetings = isTitle ? greetingsN : msgNight[night];
+                break;
+            case 16: case 17:
+                Random genmsgNoon = new Random();
+                int noon = genmsgNoon.nextInt(msgNoon.length-1);
+                greetings = isTitle ? greetingsNoon : msgNoon[noon];
+                break;
+            case 1: case 2: case 3: case 4:
+                Random genmsgMN = new Random();
+                int mn = genmsgMN.nextInt(msgMN.length-1);
+                int rd = genmsgMN.nextInt(msgRandom.length-1);
+                greetings = isTitle ? msgRandom[rd] : msgMN[mn];
+                break;
+            case 11: case 12: case 13: case 14: case 15:
+                Random genmsgRD = new Random();
+                int randomm = genmsgRD.nextInt(msgRandom.length-1);
+                int randomGreet = genmsgRD.nextInt(msgRandomGreet.length-1);
+                greetings = isTitle ? msgRandom[randomm] : msgRandomGreet[randomGreet];
+                break;
+            default:
+                greetings = "";
+                break;
+            }
+            return greetings + (isTitle ? " " + getOwnerName() + "." : "");
     }
 
     @VisibleForTesting
@@ -842,22 +831,6 @@ public class SettingsHomepageActivity extends FragmentActivity implements
                 ((SplitLayoutListener) fragment).setSplitLayoutSupported(mIsTwoPaneLayout);
             }
         }
-    }
-    
-    private Drawable getCircularUserIcon(Context context) {
-        final UserManager mUserManager = getSystemService(UserManager.class);
-        Bitmap bitmapUserIcon = mUserManager.getUserIcon(UserHandle.myUserId());
-
-        if (bitmapUserIcon == null) {
-            // get default user icon.
-            final Drawable defaultUserIcon = UserIcons.getDefaultUserIcon(
-                    context.getResources(), UserHandle.myUserId(), false);
-            bitmapUserIcon = UserIcons.convertToBitmap(defaultUserIcon);
-        }
-        Drawable drawableUserIcon = new CircleFramedDrawable(bitmapUserIcon,
-                (int) context.getResources().getDimension(com.android.internal.R.dimen.user_icon_size));
-
-        return drawableUserIcon;
     }
 
     private String getOwnerName(){
