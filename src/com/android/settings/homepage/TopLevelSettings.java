@@ -200,18 +200,12 @@ public class TopLevelSettings extends DashboardFragment implements SplitLayoutLi
                         (LayoutPreference) getPreferenceScreen().findPreference("top_level_homepage_widgets");
         final LayoutPreference searchWidgetPreference =
                         (LayoutPreference) getPreferenceScreen().findPreference("top_level_search_widget");
-        final boolean enableHomepageWidgets = Settings.System.getIntForUser(getContext().getContentResolver(),
+        if (activity == null) return;
+        final boolean enableHomepageWidgets = Settings.System.getIntForUser(activity.getContentResolver(),
                 "settings_homepage_widgets", 0, UserHandle.USER_CURRENT) != 0;
         if (bannerPreference != null && enableHomepageWidgets) {
             final ImageView avatarView = bannerPreference.findViewById(R.id.account_avatar);
-            avatarView.setImageDrawable(getCircularUserIcon(getActivity()));
-            avatarView.bringToFront();
-            avatarView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    launchComponent("com.android.settings", "com.android.settings.Settings$UserSettingsActivity");
-                }
-            });
+            setUpAvatarView(avatarView);
             final String wppClass = getContext().getResources().getString(R.string.config_styles_and_wallpaper_picker_class);
             final String wppPkg = getContext().getResources().getString(R.string.config_wallpaper_picker_package);
             final String wppExtraIntent = getContext().getResources().getString(R.string.config_wallpaper_picker_launch_extra);
@@ -269,18 +263,14 @@ public class TopLevelSettings extends DashboardFragment implements SplitLayoutLi
         } else {
             if (searchWidgetPreference != null) {
                 final ImageView avatarView = searchWidgetPreference.findViewById(R.id.avatar_widget_icon);
-                avatarView.setImageDrawable(getCircularUserIcon(getActivity()));
-                avatarView.bringToFront();
-                avatarView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        launchComponent("com.android.settings", "com.android.settings.Settings$UserSettingsActivity");
-                    }
-                });
+                setUpAvatarView(avatarView);
                 final ImageView searchIcon = searchWidgetPreference.findViewById(R.id.search_widget_icon);
                 final View searchView = searchWidgetPreference.findViewById(R.id.search_widget);
                 final TextView searchTextView = searchWidgetPreference.findViewById(R.id.homepage_search_text);
-                searchTextView.setText(getGreetings(getContext(), true));
+                final boolean messagesEnabled = Settings.System.getIntForUser(activity.getContentResolver(),
+                            "settings_homepage_greetings", 0, UserHandle.USER_CURRENT) != 0;
+                String defaultSearchText = getContext().getResources().getString(R.string.search_settings);
+                searchTextView.setText(messagesEnabled ? defaultSearchText : getGreetings(getContext(), true));
                 searchIcon.bringToFront();
                 if (activity != null) {
                     FeatureFactory.getFactory(activity).getSearchFeatureProvider().initSearchToolbar(activity /* activity */, searchView, (View) searchIcon, SettingsEnums.SETTINGS_HOMEPAGE);
@@ -288,8 +278,20 @@ public class TopLevelSettings extends DashboardFragment implements SplitLayoutLi
             }
         }
     }
+    
+    private void setUpAvatarView(ImageView avatarView) {
+        final Drawable avatarDrawable = getCircularUserIcon(getActivity());
+        avatarView.setImageDrawable(avatarDrawable);
+        avatarView.bringToFront();
+        avatarView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launchComponent("com.android.settings", "com.android.settings.Settings$UserSettingsActivity");
+            }
+        });
+    }
 
-    public String getGreetings(Context context, boolean isTitle) {
+    private String getGreetings(Context context, boolean isTitle) {
         String[] randomMsgSearch = context.getResources().getStringArray(R.array.settings_random);
         String[] morningMsg = context.getResources().getStringArray(R.array.dashboard_morning);
         String[] morningMsgGreet = context.getResources().getStringArray(R.array.dashboard_morning_greetings);
