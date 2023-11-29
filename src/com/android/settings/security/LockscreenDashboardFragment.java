@@ -119,7 +119,7 @@ public class LockscreenDashboardFragment extends DashboardFragment
             if (preference.getKey() != null) {
                 boolean isAmbMusicPreference = preference.getKey().equals("dashboard_tile_pref_com.google.intelligence.sense.ambientmusic.AmbientMusicNotificationsSettingsActivity");
                 if (isAmbMusicPreference) {
-                    preference.setLayoutResource(R.layout.top_level_preference_middle_card);
+                    preference.setLayoutResource(R.layout.top_level_preference_bottom_card);
                     getPreferenceScreen().removePreference(preference);
                     generalLSCategory.addPreference(preference);
                 }
