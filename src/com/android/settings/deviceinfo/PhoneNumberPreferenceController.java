@@ -105,7 +105,17 @@ public class PhoneNumberPreferenceController extends BasePreferenceController {
         for (int simSlotNumber = 0; simSlotNumber < mPreferenceList.size(); simSlotNumber++) {
             final Preference simStatusPreference = mPreferenceList.get(simSlotNumber);
             simStatusPreference.setTitle(getPreferenceTitle(simSlotNumber));
-            simStatusPreference.setSummary(getSummary());
+            simStatusPreference.setSummary(getPhoneNumber(simSlotNumber));
+            simStatusPreference.setIcon(R.drawable.ic_numbers);
+            if (mTelephonyManager.getPhoneCount() < 2) {
+                simStatusPreference.setLayoutResource(R.layout.top_level_preference_bottom_card);
+            } else {
+                if (simSlotNumber == 0) {
+                    simStatusPreference.setLayoutResource(R.layout.top_level_preference_middle_card);
+                } else {
+                    simStatusPreference.setLayoutResource(R.layout.top_level_preference_bottom_card);
+                }
+            }
         }
     }
 

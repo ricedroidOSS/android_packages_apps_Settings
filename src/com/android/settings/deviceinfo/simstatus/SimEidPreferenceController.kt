@@ -70,6 +70,8 @@ class SimEidPreferenceController(context: Context, preferenceKey: String) :
     override fun displayPreference(screen: PreferenceScreen) {
         super.displayPreference(screen)
         preference = screen.findPreference(preferenceKey)!!
+        preference.setLayoutResource(R.layout.top_level_preference_middle_card)
+        preference.setIcon(R.drawable.ic_sim_card_download)
     }
 
     override fun onViewCreated(viewLifecycleOwner: LifecycleOwner) {

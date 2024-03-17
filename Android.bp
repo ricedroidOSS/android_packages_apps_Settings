@@ -150,6 +150,10 @@ android_library {
         "telephony-common",
         "ims-common",
     ],
+    
+    additional_manifests: [
+        "RisingManifest.xml"
+    ],
 }
 
 platform_compat_config {
