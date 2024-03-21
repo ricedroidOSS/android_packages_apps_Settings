@@ -46,7 +46,10 @@ import com.android.settings.overlay.FeatureFactory;
 import com.android.settings.search.BaseSearchIndexProvider;
 import com.android.settingslib.search.SearchIndexable;
 
+import java.util.Arrays;
 import java.util.List;
+
+import com.android.settings.preferences.ui.PreferenceUtils;
 
 /**
  * Displays a list of apps and subsystems that consume power, ordered by how much power was consumed
@@ -153,6 +156,15 @@ public class PowerUsageSummary extends PowerUsageBase
         }
         mBatteryTipPreferenceController.restoreInstanceState(icicle);
         updateBatteryTipFlag(icicle);
+        
+        PreferenceUtils.setupExtraPreferences(
+            Arrays.asList(getResources().getStringArray(R.array.battery_dashboard_top_prefs)),
+            Arrays.asList(getResources().getStringArray(R.array.battery_dashboard_middle_prefs)),
+            Arrays.asList(getResources().getStringArray(R.array.battery_dashboard_bottom_prefs)),
+            Arrays.asList(getResources().getStringArray(R.array.battery_dashboard_solo_prefs)),
+            getPreferenceScreen(),
+            true
+        );
     }
 
     @Override

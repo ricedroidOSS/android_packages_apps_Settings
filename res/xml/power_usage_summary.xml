@@ -118,6 +118,13 @@
         android:fragment="com.android.settings.deviceinfo.batteryinfo.BatteryInfoFragment"
         settings:keywords="@string/keywords_battery_info"/>
 
+    <com.crdroid.settings.preferences.SystemSettingSwitchPreference
+        android:key="adaptive_charging_enabled"
+        android:title="@string/adaptive_charging_enabled_title"
+        android:summary="@string/adaptive_charging_enabled_summary"
+        android:defaultValue="false"
+        android:order="999" />
+
     <com.android.settingslib.widget.FooterPreference
         android:key="power_usage_footer"
         android:title="@string/battery_footer_summary"

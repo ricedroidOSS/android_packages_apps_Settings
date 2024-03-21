@@ -18,6 +18,7 @@ package com.android.settings.network;
 import android.app.settings.SettingsEnums;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 
 import androidx.lifecycle.LifecycleOwner;
 
@@ -30,8 +31,11 @@ import com.android.settingslib.core.AbstractPreferenceController;
 import com.android.settingslib.core.lifecycle.Lifecycle;
 import com.android.settingslib.search.SearchIndexable;
 
+import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.android.settings.preferences.ui.PreferenceUtils;
 
 @SearchIndexable
 public class NetworkDashboardFragment extends DashboardFragment implements
@@ -60,6 +64,19 @@ public class NetworkDashboardFragment extends DashboardFragment implements
 
         use(AirplaneModePreferenceController.class).setFragment(this);
         use(NetworkProviderCallsSmsController.class).init(this);
+    }
+    
+    @Override
+    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+        super.onCreatePreferences(savedInstanceState, rootKey);
+        PreferenceUtils.setupExtraPreferences(
+            Arrays.asList(getResources().getStringArray(R.array.network_dashboard_top_prefs)),
+            Arrays.asList(getResources().getStringArray(R.array.network_dashboard_middle_prefs)),
+            Arrays.asList(getResources().getStringArray(R.array.network_dashboard_bottom_prefs)),
+            Arrays.asList(getResources().getStringArray(R.array.network_dashboard_solo_prefs)),
+            getPreferenceScreen(),
+            true
+        );
     }
 
     @Override

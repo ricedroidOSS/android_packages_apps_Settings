@@ -42,7 +42,10 @@ import com.android.settingslib.core.AbstractPreferenceController;
 import com.android.settingslib.search.SearchIndexable;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+import com.android.settings.preferences.ui.PreferenceUtils;
 
 @SearchIndexable
 public class ConfigureNotificationSettings extends DashboardFragment implements
@@ -81,6 +84,14 @@ public class ConfigureNotificationSettings extends DashboardFragment implements
         replaceEnterpriseStringSummary("lock_screen_work_redact",
                 WORK_PROFILE_LOCK_SCREEN_REDACT_NOTIFICATION_SUMMARY,
                 R.string.lock_screen_notifs_redact_work_summary);
+        PreferenceUtils.setupExtraPreferences(
+            Arrays.asList(getResources().getStringArray(R.array.notif_dashboard_top_prefs)),
+            Arrays.asList(getResources().getStringArray(R.array.notif_dashboard_middle_prefs)),
+            Arrays.asList(getResources().getStringArray(R.array.notif_dashboard_bottom_prefs)),
+            Arrays.asList(getResources().getStringArray(R.array.notif_dashboard_solo_prefs)),
+            getPreferenceScreen(),
+            true
+        );
     }
 
     @Override

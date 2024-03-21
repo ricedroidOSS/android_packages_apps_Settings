@@ -23,18 +23,17 @@
     <!-- Back gesture intensity -->
     <com.crdroid.settings.preferences.CustomSeekBarPreference
         android:key="back_gesture_haptic_intensity"
-        android:icon="@drawable/ic_sysbar_back"
         android:title="@string/back_gesture_haptic_intensity_title"
         android:order="-999"
         android:max="5"
         settings:min="0"
         android:defaultValue="1"
-        settings:interval="1"/>
+        settings:interval="1"
+        settings:position="top"/>
 
     <!-- Brightness slider intensity -->
     <com.crdroid.settings.preferences.CustomSeekBarPreference
         android:key="qs_brightness_slider_haptic"
-        android:icon="@drawable/ic_brightness_auto"
         android:title="@string/brightness_slider_haptics_intensity_title"
         android:order="-998"
         android:max="3"
@@ -45,7 +44,6 @@
     <!-- QS tile haptics intensity -->
     <com.crdroid.settings.preferences.CustomSeekBarPreference
         android:key="qs_panel_tile_haptic"
-        android:icon="@drawable/ic_qs_tile"
         android:title="@string/qs_panel_tile_haptic_intensity_title"
         android:order="-997"
         android:max="5"
@@ -56,7 +54,6 @@
     <!-- Edge scrolling intensity -->
     <com.crdroid.settings.preferences.CustomSeekBarPreference
         android:key="edge_scrolling_haptics_intensity"
-        android:icon="@drawable/ic_scroll"
         android:title="@string/edge_scrolling_haptics_intensity_title"
         android:order="-997"
         android:max="5"
@@ -67,12 +64,12 @@
     <!-- Volume slider intensity -->
     <com.crdroid.settings.preferences.CustomSeekBarPreference
         android:key="volume_slider_haptics_intensity"
-        android:icon="@drawable/ic_settings_sound"
         android:title="@string/volume_slider_haptics_intensity_title"
         android:order="-996"
         android:max="3"
         settings:min="0"
         android:defaultValue="1"
-        settings:interval="1"/>
+        settings:interval="1"
+        settings:position="bottom"/>
 
 </PreferenceScreen>

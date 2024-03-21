@@ -68,11 +68,6 @@ public class VpnInfoPreference extends RestrictedPreference implements View.OnCl
             icon.setOnClickListener(this);
             icon.setEnabled(false);
         }
-
-        // Hide the divider from view
-        final View divider =
-                holder.findViewById(com.android.settingslib.widget.preference.twotarget.R.id.two_target_divider);
-        divider.setVisibility(View.GONE);
     }
 
     @Override
