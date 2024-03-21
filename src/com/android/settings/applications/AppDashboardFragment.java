@@ -18,6 +18,7 @@ package com.android.settings.applications;
 
 import android.app.settings.SettingsEnums;
 import android.content.Context;
+import android.os.Bundle;
 import android.provider.SearchIndexableResource;
 
 import com.android.internal.annotations.VisibleForTesting;
@@ -32,6 +33,8 @@ import com.android.settingslib.search.SearchIndexable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import com.android.settings.preferences.ui.PreferenceUtils;
 
 /** Settings page for apps. */
 @SearchIndexable
@@ -74,6 +77,19 @@ public class AppDashboardFragment extends DashboardFragment {
     @Override
     protected int getPreferenceScreenResId() {
         return R.xml.apps;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        PreferenceUtils.setupExtraPreferences(
+            Arrays.asList(getResources().getStringArray(R.array.app_dashboard_top_prefs)),
+            Arrays.asList(getResources().getStringArray(R.array.app_dashboard_middle_prefs)),
+            Arrays.asList(getResources().getStringArray(R.array.app_dashboard_bottom_prefs)),
+            Arrays.asList(getResources().getStringArray(R.array.app_dashboard_solo_prefs)),
+            getPreferenceScreen(),
+            true
+        );
     }
 
     @Override

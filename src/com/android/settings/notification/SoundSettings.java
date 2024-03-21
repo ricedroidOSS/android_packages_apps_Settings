@@ -50,6 +50,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.android.settings.preferences.ui.PreferenceUtils;
+
 @SearchIndexable
 public class SoundSettings extends DashboardFragment implements OnActivityResultListener {
     private static final String TAG = "SoundSettings";
@@ -114,6 +116,14 @@ public class SoundSettings extends DashboardFragment implements OnActivityResult
         if (phoneRingTonePreference != null && openPhoneRingtonePicker) {
             onPreferenceTreeClick(phoneRingTonePreference);
         }
+        PreferenceUtils.setupExtraPreferences(
+            Arrays.asList(getResources().getStringArray(R.array.sound_dashboard_top_prefs)),
+            Arrays.asList(getResources().getStringArray(R.array.sound_dashboard_middle_prefs)),
+            Arrays.asList(getResources().getStringArray(R.array.sound_dashboard_bottom_prefs)),
+            Arrays.asList(getResources().getStringArray(R.array.sound_dashboard_solo_prefs)),
+            getPreferenceScreen(),
+            true
+        );
     }
 
     @Override

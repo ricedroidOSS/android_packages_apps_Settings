@@ -62,7 +62,6 @@
     <com.android.settingslib.RestrictedSwitchPreference
         android:key="airplane_mode"
         android:title="@string/airplane_mode"
-        android:icon="@drawable/ic_airplanemode_active"
         android:order="-5"
         settings:controller="com.android.settings.network.AirplaneModePreferenceController"
         settings:userRestriction="no_airplane_mode"/>
@@ -91,7 +90,6 @@
         android:fragment="com.android.settings.vpn2.VpnSettings"
         android:key="vpn_settings"
         android:title="@string/vpn_settings_title"
-        android:icon="@drawable/ic_vpn_key"
         android:order="15"
         android:summary="@string/summary_placeholder"
         settings:userRestriction="no_config_vpn"

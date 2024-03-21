@@ -37,7 +37,10 @@ import com.android.settingslib.search.SearchIndexable;
 import lineageos.hardware.LineageHardwareManager;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+import com.android.settings.preferences.ui.PreferenceUtils;
 
 @SearchIndexable(forTarget = SearchIndexable.ALL & ~SearchIndexable.ARC)
 public class DisplaySettings extends DashboardFragment {
@@ -65,6 +68,14 @@ public class DisplaySettings extends DashboardFragment {
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
+        PreferenceUtils.setupExtraPreferences(
+            Arrays.asList(getResources().getStringArray(R.array.display_dashboard_top_prefs)),
+            Arrays.asList(getResources().getStringArray(R.array.display_dashboard_middle_prefs)),
+            Arrays.asList(getResources().getStringArray(R.array.display_dashboard_bottom_prefs)),
+            Arrays.asList(getResources().getStringArray(R.array.display_dashboard_solo_prefs)),
+            getPreferenceScreen(),
+            true
+        );
     }
 
     @Override
