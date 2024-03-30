@@ -39,6 +39,13 @@ class UserUtils private constructor(private val context: Context) {
         }
     }
 
+    fun setLongClick(avatarView: ImageView) {
+        avatarView.setOnLongClickListener {
+            navigateToUserSettings()
+            true
+        }
+    }
+
     fun getCircularUserIcon(): Drawable {
         var bitmapUserIcon = userManager.getUserIcon(UserHandle.myUserId())
         if (bitmapUserIcon == null) {
