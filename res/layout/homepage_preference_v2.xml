@@ -14,7 +14,6 @@
   See the License for the specific language governing permissions and
   limitations under the License.
   -->
-
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:androidprv="http://schemas.android.com/apk/prv/res/android"
@@ -38,13 +37,12 @@
         android:orientation="horizontal"
         android:paddingStart="16dp"
         android:layout_marginEnd="-8dp">
-
         <androidx.preference.internal.PreferenceImageView
             android:id="@android:id/icon"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:scaleType="centerInside"/>
-
+            android:scaleType="centerInside"
+            android:tint="@color/top_level_preference_text_color_primary"/>
     </LinearLayout>
 
     <RelativeLayout
@@ -67,21 +65,23 @@
             android:textAppearance="?android:attr/textAppearanceListItem"
             android:hyphenationFrequency="normalFast"
             android:lineBreakWordStyle="phrase"
+            android:textColor="@color/top_level_preference_text_color_primary"
             android:ellipsize="marquee"/>
 
         <TextView
             android:id="@android:id/summary"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_below="@android:id/title"
             android:layout_alignStart="@android:id/title"
             android:layout_gravity="start"
             android:textAlignment="viewStart"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="?androidprv:attr/materialColorOnSurfaceVariant"
+            android:textColor="@color/top_level_preference_text_color_secondary"
             android:maxLines="4"
+            android:visibility="gone"
             android:hyphenationFrequency="normalFast"
-            android:lineBreakWordStyle="phrase"
-            style="@style/PreferenceSummaryTextStyle"/>
+            android:lineBreakWordStyle="phrase"/>
     </RelativeLayout>
+
 </LinearLayout>

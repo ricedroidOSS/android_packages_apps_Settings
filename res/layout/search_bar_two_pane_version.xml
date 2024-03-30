@@ -25,21 +25,30 @@
     <Toolbar
         android:id="@+id/search_action_bar_two_pane"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/search_bar_height"
+        android:layout_height="@dimen/custom_avatar_length"
         android:paddingStart="@dimen/search_bar_padding_start_two_pane"
-        android:paddingEnd="@dimen/search_bar_padding_end_two_pane"
         android:background="@drawable/search_bar_selected_background"
         android:touchscreenBlocksFocus="false"
         android:nextFocusForward="@+id/homepage_container"
-        android:contentInsetStartWithNavigation="@dimen/search_bar_content_inset"
-        android:navigationIcon="@drawable/ic_homepage_search">
-        <TextView
+        android:contentInsetStartWithNavigation="@dimen/search_bar_content_inset">
+        <com.android.settings.utils.SettingsSearchTextView
             android:id="@+id/search_bar_title"
             style="@style/TextAppearance.SearchBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="@dimen/search_bar_title_padding_start_regular_two_pane"
             android:layout_gravity="start"
+            android:textColor="@color/search_bar_icon_bg"
+            android:textSize="18sp"
             android:text="@string/search_settings"/>
+        <ImageView
+            android:id="@+id/search_icon"
+            android:src="@drawable/ic_homepage_search"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginEnd="16dp"
+            android:tint="@color/search_bar_icon_bg"
+            android:padding="8dp"
+            android:layout_gravity="end" />
     </Toolbar>
 </com.google.android.material.card.MaterialCardView>

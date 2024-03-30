@@ -22,16 +22,29 @@
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="@dimen/homepage_app_bar_margin_horizontal_two_pane"
     android:padding="@dimen/homepage_app_bar_padding_two_pane"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:background="@drawable/homepage_app_bar_background">
 
-    <include layout="@layout/search_bar_two_pane_version"/>
+    <com.android.settings.utils.SettingsDashboardTextView
+        android:id="@+id/homepage_title"
+        style="@style/HomepageTitleText"
+        android:layout_marginTop="@dimen/homepage_title_margin_top"
+        android:layout_marginBottom="@dimen/search_bar_margin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
-    <ImageView
-        android:id="@+id/account_avatar_two_pane_version"
-        android:layout_width="@dimen/avatar_length"
-        android:layout_height="@dimen/avatar_length"
-        android:layout_gravity="center"
-        android:contentDescription="@string/search_bar_account_avatar_content_description"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+        <include layout="@layout/search_bar_two_pane_version"/>
+        <ImageView
+            android:id="@+id/account_avatar_two_pane_version"
+            android:layout_width="@dimen/custom_avatar_length"
+            android:layout_height="@dimen/custom_avatar_length"
+            android:layout_gravity="center"
+            android:contentDescription="@string/search_bar_account_avatar_content_description" />
+    </LinearLayout>
 
 </LinearLayout>
