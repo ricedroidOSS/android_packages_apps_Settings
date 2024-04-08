@@ -106,6 +106,12 @@
         android:summary="@string/battery_percentage_description"
         settings:controller="com.android.settings.display.BatteryPercentagePreferenceController" />
 
+    <com.crdroid.settings.preferences.SystemSettingSwitchPreference
+        android:key="adaptive_charging_enabled"
+        android:title="@string/adaptive_charging_enabled_title"
+        android:summary="@string/adaptive_charging_enabled_summary"
+        android:defaultValue="false" />
+
     <SwitchPreferenceCompat
         android:key="fast_charging"
         android:title="@string/fast_charging_title"
