@@ -33,6 +33,8 @@ import com.android.settings.overlay.FeatureFactory;
 
 import com.android.settings.network.SubscriptionUtil;
 
+import com.crdroid.settings.utils.AdaptivePreferenceUtils;
+
 public class BrandedAccountPreferenceController extends BasePreferenceController {
     private final AccountFeatureProvider mAccountFeatureProvider;
     private Account[] mAccounts;
@@ -70,9 +72,9 @@ public class BrandedAccountPreferenceController extends BasePreferenceController
             accountPreference.setSummary(getAccountSummary(mAccounts.length));
         }
         if (!SubscriptionUtil.isSimHardwareVisible(mContext)) {
-            accountPreference.setLayoutResource(R.layout.top_level_preference_solo_card);
+            accountPreference.setLayoutResource(AdaptivePreferenceUtils.getLayoutResourceId(mContext, "solo", false));
         } else {
-            accountPreference.setLayoutResource(R.layout.top_level_preference_top_card);
+            accountPreference.setLayoutResource(AdaptivePreferenceUtils.getLayoutResourceId(mContext, "top", false));
         }
     }
 

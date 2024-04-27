@@ -38,11 +38,11 @@
             settings:controller="com.android.settings.deviceinfo.DeviceNamePreferenceController"
             settings:enableCopying="true"/>
 
-        <Preference
+        <com.android.settings.preferences.ui.AdaptivePreference
             android:key="rom_build_status"
-            settings:layout="@layout/top_level_preference_bottom_card"
             android:order="-997"
             settings:enableCopying="true"
+            settings:position="bottom"
             android:selectable="true"/>
 
         <com.android.settingslib.widget.LayoutPreference
@@ -152,6 +152,7 @@
         <com.android.settings.preferences.ui.AdaptivePreference
             android:key="battery_info"
             android:order="33"
+            android:icon="@drawable/ic_battery_plus"
             android:title="@string/battery_info"
             android:fragment="com.android.settings.deviceinfo.batteryinfo.BatteryInfoFragment"
             settings:keywords="@string/keywords_battery_info"/>
@@ -196,6 +197,7 @@
         <com.android.settings.preferences.ui.AdaptivePreference
             android:key="sleep_time"
             android:order="49"
+            android:icon="@drawable/ic_sleep"
             android:title="@string/status_sleep_time"
             android:summary="@string/summary_placeholder"
             android:selectable="false"/>

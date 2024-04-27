@@ -34,6 +34,8 @@ import com.android.settings.network.SubscriptionUtil;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.crdroid.settings.utils.AdaptivePreferenceUtils;
+
 public class PhoneNumberPreferenceController extends BasePreferenceController {
 
     private static final String KEY_PHONE_NUMBER = "phone_number";
@@ -105,15 +107,15 @@ public class PhoneNumberPreferenceController extends BasePreferenceController {
         for (int simSlotNumber = 0; simSlotNumber < mPreferenceList.size(); simSlotNumber++) {
             final Preference simStatusPreference = mPreferenceList.get(simSlotNumber);
             simStatusPreference.setTitle(getPreferenceTitle(simSlotNumber));
-            simStatusPreference.setSummary(getPhoneNumber(simSlotNumber));
+            simStatusPreference.setSummary(getSummary());
             simStatusPreference.setIcon(R.drawable.ic_numbers);
             if (mTelephonyManager.getPhoneCount() < 2) {
-                simStatusPreference.setLayoutResource(R.layout.top_level_preference_bottom_card);
+                simStatusPreference.setLayoutResource(AdaptivePreferenceUtils.getLayoutResourceId(mContext, "bottom", false));
             } else {
                 if (simSlotNumber == 0) {
-                    simStatusPreference.setLayoutResource(R.layout.top_level_preference_middle_card);
+                    simStatusPreference.setLayoutResource(AdaptivePreferenceUtils.getLayoutResourceId(mContext, "middle", false));
                 } else {
-                    simStatusPreference.setLayoutResource(R.layout.top_level_preference_bottom_card);
+                    simStatusPreference.setLayoutResource(AdaptivePreferenceUtils.getLayoutResourceId(mContext, "bottom", false));
                 }
             }
         }

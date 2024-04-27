@@ -19,6 +19,7 @@ package com.android.settings.network;
 import android.content.Context;
 import android.provider.Settings;
 
+import androidx.preference.Preference;
 import androidx.preference.PreferenceScreen;
 
 import com.android.settings.R;
@@ -36,6 +37,10 @@ public class AdaptiveConnectivityPreferenceController extends BasePreferenceCont
     @Override
     public void displayPreference(PreferenceScreen screen) {
         super.displayPreference(screen);
+        Preference preference = screen.findPreference(getPreferenceKey());
+        if (preference != null) {
+            preference.setIcon(R.drawable.ic_data_usage_wifi);
+        }
     }
 
     @Override

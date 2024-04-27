@@ -163,6 +163,7 @@ public class PowerUsageSummary extends PowerUsageBase
             Arrays.asList(getResources().getStringArray(R.array.battery_dashboard_bottom_prefs)),
             Arrays.asList(getResources().getStringArray(R.array.battery_dashboard_solo_prefs)),
             getPreferenceScreen(),
+            getActivity(),
             true
         );
     }

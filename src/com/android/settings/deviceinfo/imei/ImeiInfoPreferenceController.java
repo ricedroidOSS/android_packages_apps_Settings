@@ -38,6 +38,8 @@ import com.android.settings.deviceinfo.simstatus.SlotSimStatus;
 import com.android.settings.network.SubscriptionUtil;
 import com.android.settingslib.Utils;
 
+import com.crdroid.settings.utils.AdaptivePreferenceUtils;
+
 /**
  * Controller that manages preference for single and multi sim devices.
  */
@@ -103,7 +105,7 @@ public class ImeiInfoPreferenceController extends BasePreferenceController {
             multiImeiPreference.setKey(DEFAULT_KEY + (1 + simSlotNumber));
             multiImeiPreference.setEnabled(true);
             multiImeiPreference.setCopyingEnabled(true);
-            multiImeiPreference.setLayoutResource(R.layout.top_level_preference_middle_card);
+            multiImeiPreference.setLayoutResource(AdaptivePreferenceUtils.getLayoutResourceId(mContext, "middle", false));
             multiImeiPreference.setIcon(R.drawable.ic_number);
             category.addPreference(multiImeiPreference);
        }

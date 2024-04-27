@@ -41,6 +41,8 @@ import com.android.settingslib.search.SearchIndexableRaw;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.crdroid.settings.utils.AdaptivePreferenceUtils;
+
 public class SimStatusPreferenceController extends BasePreferenceController {
 
     private static final String KEY_PREFERENCE_CATEGORY = "device_detail_category";
@@ -110,12 +112,12 @@ public class SimStatusPreferenceController extends BasePreferenceController {
             multiSimPreference.setIcon(R.drawable.ic_sim_card);
             TelephonyManager mTelephonyManager = mContext.getSystemService(TelephonyManager.class);
             if (mTelephonyManager.getPhoneCount() < 2) {
-                multiSimPreference.setLayoutResource(R.layout.top_level_preference_top_card);
+                multiSimPreference.setLayoutResource(AdaptivePreferenceUtils.getLayoutResourceId(mContext, "top", false));
             } else {
                 if (simSlotNumber == 0) {
-                    multiSimPreference.setLayoutResource(R.layout.top_level_preference_top_card);
+                    multiSimPreference.setLayoutResource(AdaptivePreferenceUtils.getLayoutResourceId(mContext, "top", false));
                 } else {
-                    multiSimPreference.setLayoutResource(R.layout.top_level_preference_middle_card);
+                    multiSimPreference.setLayoutResource(AdaptivePreferenceUtils.getLayoutResourceId(mContext, "middle", false));
                 }
             }
             category.addPreference(multiSimPreference);
