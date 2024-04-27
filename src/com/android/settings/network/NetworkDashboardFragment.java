@@ -75,6 +75,7 @@ public class NetworkDashboardFragment extends DashboardFragment implements
             Arrays.asList(getResources().getStringArray(R.array.network_dashboard_bottom_prefs)),
             Arrays.asList(getResources().getStringArray(R.array.network_dashboard_solo_prefs)),
             getPreferenceScreen(),
+            getActivity(),
             true
         );
     }

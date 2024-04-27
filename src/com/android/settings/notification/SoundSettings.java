@@ -122,6 +122,7 @@ public class SoundSettings extends DashboardFragment implements OnActivityResult
             Arrays.asList(getResources().getStringArray(R.array.sound_dashboard_bottom_prefs)),
             Arrays.asList(getResources().getStringArray(R.array.sound_dashboard_solo_prefs)),
             getPreferenceScreen(),
+            getActivity(),
             true
         );
     }

@@ -90,6 +90,7 @@ public class ConfigureNotificationSettings extends DashboardFragment implements
             Arrays.asList(getResources().getStringArray(R.array.notif_dashboard_bottom_prefs)),
             Arrays.asList(getResources().getStringArray(R.array.notif_dashboard_solo_prefs)),
             getPreferenceScreen(),
+            getActivity(),
             true
         );
     }

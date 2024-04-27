@@ -39,6 +39,8 @@ import com.android.settingslib.core.lifecycle.LifecycleObserver;
 import com.android.settingslib.core.lifecycle.events.OnCreate;
 import com.android.settingslib.core.lifecycle.events.OnSaveInstanceState;
 
+import com.crdroid.settings.utils.AdaptivePreferenceUtils;
+
 public class DeviceNamePreferenceController extends BasePreferenceController
         implements ValidatedEditTextPreference.Validator,
         Preference.OnPreferenceChangeListener,
@@ -76,7 +78,7 @@ public class DeviceNamePreferenceController extends BasePreferenceController
         mPreference.setSummary(deviceName);
         mPreference.setText(deviceName.toString());
         mPreference.setValidator(this);
-        mPreference.setLayoutResource(R.layout.top_level_preference_top_card);
+        mPreference.setLayoutResource(AdaptivePreferenceUtils.getLayoutResourceId(mContext, "top", false));
     }
 
     private void initializeDeviceName() {

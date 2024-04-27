@@ -74,6 +74,7 @@ public class DisplaySettings extends DashboardFragment {
             Arrays.asList(getResources().getStringArray(R.array.display_dashboard_bottom_prefs)),
             Arrays.asList(getResources().getStringArray(R.array.display_dashboard_solo_prefs)),
             getPreferenceScreen(),
+            getActivity(),
             true
         );
     }
