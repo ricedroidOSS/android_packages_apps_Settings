@@ -18,8 +18,4 @@
 <androidx.compose.ui.platform.ComposeView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="@dimen/card_margin_start_aqua"
-    android:layout_marginEnd="@dimen/card_margin_end_aqua"
-    android:layout_marginTop="2dp"
-    android:background="@drawable/rising_preference_middle_background_card" />
+    android:layout_height="wrap_content" />
