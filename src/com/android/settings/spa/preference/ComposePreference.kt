@@ -27,6 +27,8 @@ import androidx.preference.PreferenceViewHolder
 import com.android.settings.R
 import com.android.settingslib.spa.framework.theme.SettingsTheme
 
+import com.crdroid.settings.utils.AdaptivePreferenceUtils
+
 open class ComposePreference @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
@@ -46,7 +48,8 @@ open class ComposePreference @JvmOverloads constructor(
     }
 
     init {
-        layoutResource = R.layout.preference_compose
+        val layoutRes = AdaptivePreferenceUtils.getComposeLayoutResourceId(context, attrs)
+        layoutResource = layoutRes
     }
 
     override fun onBindViewHolder(holder: PreferenceViewHolder) {
