@@ -58,7 +58,7 @@
         android:order="-997"
         android:max="5"
         settings:min="0"
-        android:defaultValue="3"
+        android:defaultValue="1"
         settings:interval="1"/>
 
     <!-- Volume slider intensity -->
