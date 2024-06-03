@@ -81,7 +81,7 @@ public class HapticsPreferenceFragmentController extends AbstractPreferenceContr
         mBackIntensity.setValue(backIntensity);
 
         int brightnessIntensity = Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.QS_BRIGHTNESS_SLIDER_HAPTIC, 1);
+                Settings.System.QS_BRIGHTNESS_SLIDER_HAPTIC, 0);
         mBrightnessIntensity.setValue(brightnessIntensity);
 
         int edgeScrollingIntensity = Settings.System.getInt(mContext.getContentResolver(),
