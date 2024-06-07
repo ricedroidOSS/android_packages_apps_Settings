@@ -98,11 +98,10 @@ public interface SearchFeatureProvider {
         //
         // Need to make the navigation icon non-clickable so that the entire card is clickable
         // and goes to the search UI. Also set the background to null so there's no ripple.
-        final View navView = toolbar.getNavigationView();
+        final View navView = toolbar.findViewById(R.id.search_icon);
         navView.setClickable(false);
         navView.setFocusable(false);
         navView.setImportantForAccessibility(IMPORTANT_FOR_ACCESSIBILITY_NO);
-        navView.setBackground(null);
 
         final Context context = activity.getApplicationContext();
         final Intent intent = buildSearchIntent(context, pageId)

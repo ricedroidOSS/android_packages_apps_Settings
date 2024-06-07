@@ -455,7 +455,7 @@
     </style>
 
     <style name="SearchBarStyle">
-        <item name="cardCornerRadius">@dimen/search_bar_corner_radius</item>
+        <item name="cardCornerRadius">@dimen/custom_search_bar_corner_radius</item>
         <item name="cardElevation">0dp</item>
     </style>
 
