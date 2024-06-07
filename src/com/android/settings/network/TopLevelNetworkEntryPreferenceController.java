@@ -35,11 +35,7 @@ public class TopLevelNetworkEntryPreferenceController extends BasePreferenceCont
 
     @Override
     public int getAvailabilityStatus() {
-        // TODO(b/281597506): Update the ActivityEmbeddingUtils.isEmbeddingActivityEnabled
-        //   while getting the new API.
-        return (Utils.isDemoUser(mContext)
-            && !ActivityEmbeddingUtils.isEmbeddingActivityEnabled(mContext))
-                ? UNSUPPORTED_ON_DEVICE : AVAILABLE;
+        return UNSUPPORTED_ON_DEVICE;
     }
 
     @Override

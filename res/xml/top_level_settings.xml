@@ -21,6 +21,16 @@
     android:key="top_level_settings">
 
     <com.android.settings.widget.HomepagePreference
+        android:fragment="com.android.settings.deviceinfo.aboutphone.MyDeviceInfoFragment"
+        android:icon="@drawable/ic_heart"
+        android:key="top_level_about_device"
+        android:order="-151"
+        android:title="@string/about_settings"
+        android:summary="@string/summary_placeholder"
+        settings:highlightableMenuKey="@string/menu_key_about_device"
+        settings:controller="com.android.settings.deviceinfo.aboutphone.TopLevelAboutDevicePreferenceController"/>
+
+    <com.android.settings.widget.HomepagePreference
         android:fragment="com.android.settings.network.NetworkDashboardFragment"
         android:icon="@drawable/ic_custom_wireless"
         android:key="top_level_network"
@@ -187,9 +197,9 @@
 
     <com.android.settings.widget.HighlightHomepagePreference
         android:fragment="com.crdroid.settings.crDroidSettingsLayout"
-        android:icon="@drawable/ic_settings_cogs"
+        android:icon="@drawable/ic_custom_settings_wallpaper_white"
         android:key="top_level_crdroid"
-        android:order="-151"
+        android:order="-152"
         android:title="@string/rising_settings_title"
         android:summary="@string/rising_settings_summary"
         settings:controller="com.crdroid.settings.TopLevelSettingsPreferenceController"/>
@@ -202,16 +212,6 @@
         android:title="@string/header_category_system"
         android:summary="@string/system_dashboard_summary"
         settings:highlightableMenuKey="@string/menu_key_system"/>
-
-    <com.android.settings.widget.HomepagePreference
-        android:fragment="com.android.settings.deviceinfo.aboutphone.MyDeviceInfoFragment"
-        android:icon="@drawable/ic_custom_settings_about_device"
-        android:key="top_level_about_device"
-        android:order="20"
-        android:title="@string/about_settings"
-        android:summary="@string/summary_placeholder"
-        settings:highlightableMenuKey="@string/menu_key_about_device"
-        settings:controller="com.android.settings.deviceinfo.aboutphone.TopLevelAboutDevicePreferenceController"/>
 
     <com.android.settings.widget.HomepagePreference
         android:icon="@drawable/ic_custom_help"
