@@ -21,9 +21,15 @@
     android:key="my_device_info_pref_screen"
     android:title="@string/about_settings">
 
-        <Preference
+
+    <PreferenceCategory
+        android:key="my_device_category"
+        android:selectable="false"
+        android:title="@string/my_device_category_title">
+
+        <com.android.settingslib.widget.LayoutPreference
             android:key="banner_logo"
-            settings:layout="@layout/rising_banner"
+            android:layout="@layout/rising_banner"
             android:order="-999"
             settings:enableCopying="true"
             android:selectable="true"/>
@@ -38,12 +44,20 @@
             settings:controller="com.android.settings.deviceinfo.DeviceNamePreferenceController"
             settings:enableCopying="true"/>
 
-        <com.android.settings.preferences.ui.AdaptivePreference
+        <Preference
             android:key="rom_build_status"
+            settings:layout="@layout/top_level_preference_rom_status"
             android:order="-997"
             settings:enableCopying="true"
             settings:position="bottom"
             android:selectable="true"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="my_device_category_more"
+        android:selectable="false"
+        android:title="@string/my_device_category_more_title">
 
         <com.android.settingslib.widget.LayoutPreference
             android:key="my_device_sw_header"
@@ -65,6 +79,8 @@
             android:layout="@layout/about_device_info"
             android:selectable="false"
             settings:isPreferenceVisible="false"/>
+
+    </PreferenceCategory>
 
     <PreferenceCategory
         android:key="basic_info_category"

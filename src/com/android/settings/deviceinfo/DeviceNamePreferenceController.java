@@ -96,9 +96,7 @@ public class DeviceNamePreferenceController extends BasePreferenceController
 
     @Override
     public int getAvailabilityStatus() {
-        return mContext.getResources().getBoolean(R.bool.config_show_device_name)
-                ? AVAILABLE
-                : UNSUPPORTED_ON_DEVICE;
+        return UNSUPPORTED_ON_DEVICE;
     }
 
     @Override
