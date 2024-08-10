@@ -66,6 +66,12 @@
         android:summary="%s"
         settings:controller="com.android.settings.fuelgauge.PowerModeController" />
 
+    <com.crdroid.settings.preferences.SystemPropertySwitchPreference
+        android:key="persist.sys.ramboost_enabled"
+        android:title="@string/ramboost_title"
+        android:summary="@string/ramboost_summary"
+        android:defaultValue="false"/>
+
     <Preference
         android:fragment="com.android.settings.fuelgauge.SmartBatterySettings"
         android:key="smart_battery_manager"
