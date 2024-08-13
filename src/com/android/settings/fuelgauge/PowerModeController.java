@@ -44,9 +44,12 @@ public class PowerModeController extends BasePreferenceController implements
     private static final String SCALING_GOVERNOR = "scaling_governor";
     private static final String SCALING_AVAILABLE_GOVERNORS = "scaling_available_governors";
     private static final String DEVICE_POWER_MODE_KEY = "device_power_mode";
+    
+    private final List<String> availableModes;
 
     public PowerModeController(Context context, String preferenceKey) {
         super(context, preferenceKey);
+        availableModes = initializeAvailableModes();
     }
 
     @Override
@@ -61,27 +64,37 @@ public class PowerModeController extends BasePreferenceController implements
         String currentMode = Settings.System.getString(mContext.getContentResolver(), DEVICE_POWER_MODE_KEY);
         listPreference.setValue(currentMode);
     }
+    
+    private List<String> initializeAvailableModes() {
+        List<String> modes = new ArrayList<>();
+        if (getGovernorForMode("default") != null) {
+            modes.add("default");
+        }
+        if (getGovernorForMode("conservative") != null) {
+            modes.add("conservative");
+        }
+        if (getGovernorForMode("powersave") != null) {
+            modes.add("powersave");
+        }
+        if (getGovernorForMode("performance") != null) {
+            modes.add("performance");
+        }
+        if (getGovernorForMode("gameboost") != null) {
+            modes.add("gameboost");
+        }
+        return modes;
+    }
+    
+    public List<String> getAvailableModes() {
+        return availableModes;
+    }
 
     private void setupPreferenceEntries(ListPreference listPreference) {
         List<String> entries = new ArrayList<>();
         List<String> entryValues = new ArrayList<>();
-        if (getGovernorForMode("default") != null) {
-            entries.add("Default");
-            entryValues.add("default");
-        }
-        if (getGovernorForMode("conservative") != null) {
-            entries.add("Conservative");
-            entryValues.add("conservative");
-        }
-        if (getGovernorForMode("powersave") != null) {
-            entries.add("Powersave");
-            entryValues.add("powersave");
-        }
-        if (getGovernorForMode("performance") != null) {
-            entries.add("Performance");
-            entryValues.add("performance");
-            entries.add("Game Boost");
-            entryValues.add("gameboost");
+        for (String mode : availableModes) {
+            entries.add(getModeLabel(mode));
+            entryValues.add(mode);
         }
         listPreference.setEntries(entries.toArray(new CharSequence[0]));
         listPreference.setEntryValues(entryValues.toArray(new CharSequence[0]));
@@ -90,10 +103,25 @@ public class PowerModeController extends BasePreferenceController implements
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         String powerMode = (String) newValue;
-        Settings.System.putString(mContext.getContentResolver(), DEVICE_POWER_MODE_KEY, powerMode);
         applyPowerMode(powerMode);
-        SystemProperties.set("persist.sys." + DEVICE_POWER_MODE_KEY, powerMode);
         return true;
+    }
+    
+    private String getModeLabel(String mode) {
+        switch (mode) {
+            case "default":
+                return "Default";
+            case "conservative":
+                return "Conservative";
+            case "powersave":
+                return "Powersave";
+            case "performance":
+                return "Performance";
+            case "gameboost":
+                return "Game Boost";
+            default:
+                return mode;
+        }
     }
 
     public void applyPowerMode(String powerMode) {
@@ -112,6 +140,8 @@ public class PowerModeController extends BasePreferenceController implements
                 Log.e(TAG, "No suitable governor found for power mode: " + powerMode);
             }
         }
+        Settings.System.putString(mContext.getContentResolver(), DEVICE_POWER_MODE_KEY, powerMode);
+        SystemProperties.set("persist.sys." + DEVICE_POWER_MODE_KEY, powerMode);
     }
 
     private String getGovernorForMode(String powerMode) {

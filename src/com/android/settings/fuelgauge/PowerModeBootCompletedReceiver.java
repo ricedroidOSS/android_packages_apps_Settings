@@ -39,7 +39,7 @@ public class PowerModeBootCompletedReceiver extends BroadcastReceiver {
     }
 
     private void applyPowerMode(Context context, String powerMode) {
-        PowerModeController controller = new PowerModeController(context, "power_mode_preference");
+        PowerModeController controller = new PowerModeController(context, DEVICE_POWER_MODE_KEY);
         controller.applyPowerMode(powerMode);
     }
 }
