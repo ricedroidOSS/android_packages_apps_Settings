@@ -35,6 +35,8 @@ import com.google.android.setupcompat.util.WizardManagerHelper;
 public class ActivityEmbeddingUtils {
     // The minimum width of the activity to show the regular homepage layout.
     private static final float MIN_REGULAR_HOMEPAGE_LAYOUT_WIDTH_DP = 380f;
+    
+    public static boolean SETTINGS_SUPPORT_LARGE_SCREEN = true;
 
     /**
      * Indicates whether to enable large screen optimization if the device supports
@@ -99,7 +101,7 @@ public class ActivityEmbeddingUtils {
             return false;
         }
         // Activity Embedding feature is not enabled if a user chooses to disable the feature.
-        if (!FeatureFlagUtils.isEnabled(context, FeatureFlagUtils.SETTINGS_SUPPORT_LARGE_SCREEN)) {
+        if (!SETTINGS_SUPPORT_LARGE_SCREEN) {
             Log.d(TAG, "isFlagEnabled = false");
             return false;
         }

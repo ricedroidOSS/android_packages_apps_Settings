@@ -25,13 +25,12 @@
     <Toolbar
         android:id="@+id/search_action_bar_two_pane"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/search_bar_height"
+        android:layout_height="@dimen/custom_avatar_length"
         android:paddingStart="@dimen/search_bar_padding_start_two_pane"
         android:background="@drawable/search_bar_selected_background"
         android:touchscreenBlocksFocus="false"
         android:nextFocusForward="@+id/homepage_container"
-        android:contentInsetStartWithNavigation="@dimen/search_bar_content_inset"
-        android:navigationIcon="@drawable/ic_homepage_search">
+        android:contentInsetStartWithNavigation="@dimen/search_bar_content_inset">
         <TextView
             android:id="@+id/search_bar_title"
             style="@style/TextAppearance.SearchBar"
@@ -39,7 +38,7 @@
             android:layout_height="wrap_content"
             android:paddingStart="@dimen/search_bar_title_padding_start_regular_two_pane"
             android:layout_gravity="start"
-            android:textColor="@color/top_level_preference_text_color_secondary"
+            android:textColor="@color/search_bar_icon_bg"
             android:text="@string/search_settings"/>
         <ImageView
             android:id="@+id/account_avatar"

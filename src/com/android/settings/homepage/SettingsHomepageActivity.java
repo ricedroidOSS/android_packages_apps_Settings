@@ -477,8 +477,7 @@ public class SettingsHomepageActivity extends FragmentActivity implements
 
     private boolean shouldLaunchDeepLinkIntentToRight() {
         if (!ActivityEmbeddingUtils.isSettingsSplitEnabled(this)
-                || !FeatureFlagUtils.isEnabled(this,
-                        FeatureFlagUtils.SETTINGS_SUPPORT_LARGE_SCREEN)) {
+                || !ActivityEmbeddingUtils.SETTINGS_SUPPORT_LARGE_SCREEN) {
             return false;
         }
 
