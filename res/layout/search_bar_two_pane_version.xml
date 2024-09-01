@@ -41,6 +41,15 @@
             android:textColor="@color/search_bar_icon_bg"
             android:text="@string/search_settings"/>
         <ImageView
+            android:id="@+id/search_icon"
+            android:src="@drawable/ic_homepage_search"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginEnd="16dp"
+            android:tint="@color/search_bar_icon_bg"
+            android:padding="8dp"
+            android:layout_gravity="end" />
+        <ImageView
             android:id="@+id/account_avatar"
             android:layout_width="@dimen/custom_avatar_length"
             android:layout_height="@dimen/custom_avatar_length"
