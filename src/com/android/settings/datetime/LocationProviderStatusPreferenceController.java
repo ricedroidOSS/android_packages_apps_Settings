@@ -36,6 +36,9 @@ import com.android.settings.R;
 import com.android.settings.core.BasePreferenceController;
 import com.android.settings.core.SubSettingLauncher;
 import com.android.settings.location.LocationSettings;
+import com.android.settingslib.core.lifecycle.LifecycleObserver;
+import com.android.settingslib.core.lifecycle.events.OnStart;
+import com.android.settingslib.core.lifecycle.events.OnStop;
 import com.android.settingslib.widget.BannerMessagePreference;
 
 import java.util.concurrent.Executor;
@@ -45,7 +48,8 @@ import java.util.concurrent.Executor;
  * screen.
  */
 public class LocationProviderStatusPreferenceController
-        extends BasePreferenceController implements TimeManager.TimeZoneDetectorListener {
+        extends BasePreferenceController
+        implements LifecycleObserver, OnStart, OnStop, TimeManager.TimeZoneDetectorListener {
     private final TimeManager mTimeManager;
 
     private BannerMessagePreference mPreference = null;
@@ -53,9 +57,6 @@ public class LocationProviderStatusPreferenceController
     public LocationProviderStatusPreferenceController(Context context, String preferenceKey) {
         super(context, preferenceKey);
         mTimeManager = context.getSystemService(TimeManager.class);
-
-        Executor mainExecutor = context.getMainExecutor();
-        mTimeManager.addTimeZoneDetectorListener(mainExecutor, this);
     }
 
     @Override
@@ -67,6 +68,17 @@ public class LocationProviderStatusPreferenceController
                 .setPositiveButtonText(
                         R.string.location_time_zone_provider_fix_dialog_ok_button)
                 .setPositiveButtonOnClickListener(v -> launchLocationSettings());
+    }
+
+    @Override
+    public void onStart() {
+        Executor mainExecutor = mContext.getMainExecutor();
+        mTimeManager.addTimeZoneDetectorListener(mainExecutor, this);
+    }
+
+    @Override
+    public void onStop() {
+        mTimeManager.removeTimeZoneDetectorListener(this);
     }
 
     @Override
