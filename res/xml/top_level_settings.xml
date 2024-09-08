@@ -20,6 +20,13 @@
     xmlns:settings="http://schemas.android.com/apk/res-auto"
     android:key="top_level_settings">
 
+    <com.android.settings.widget.AvatarHomePagePreference
+        android:icon="@drawable/ic_heart"
+        android:key="top_level_usercard"
+        android:order="-152"
+        android:title="@string/user_card_title"
+        android:summary="@string/user_card_summary"/>
+
     <com.android.settings.widget.HomepagePreference
         android:fragment="com.android.settings.deviceinfo.aboutphone.MyDeviceInfoFragment"
         android:icon="@drawable/ic_heart"

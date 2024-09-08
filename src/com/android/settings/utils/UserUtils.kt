@@ -39,6 +39,10 @@ class UserUtils private constructor(private val context: Context) {
         }
     }
 
+    fun setClick(view: View) {
+        view.setOnClickListener { navigateToUserSettings() }
+    }
+
     fun setLongClick(avatarView: ImageView) {
         avatarView.setOnLongClickListener {
             navigateToUserSettings()

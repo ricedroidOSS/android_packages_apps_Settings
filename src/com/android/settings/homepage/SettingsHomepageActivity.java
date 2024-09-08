@@ -395,14 +395,20 @@ public class SettingsHomepageActivity extends FragmentActivity implements
     }
 
     private void initAvatarView() {
-        boolean showMultiUserAvatar = android.provider.Settings.System.getInt(
-            getApplicationContext().getContentResolver(), "show_multi_user_avatar_on_homepage", 1) != 0;
         final ImageView avatarView = findViewById(R.id.account_avatar);
         final ImageView avatarTwoPaneView = findViewById(R.id.account_avatar_two_pane_version);
+        boolean showUserCardOnHomepage = android.provider.Settings.System.getInt(
+            getApplicationContext().getContentResolver(), "show_avatar_card_on_homepage", 0) != 0;
+        if (showUserCardOnHomepage) {
+            if (avatarView!= null) avatarView.setVisibility(View.GONE);
+            if (avatarTwoPaneView!= null) avatarTwoPaneView.setVisibility(View.GONE);
+            return;
+        }
+        boolean showMultiUserAvatar = android.provider.Settings.System.getInt(
+            getApplicationContext().getContentResolver(), "show_multi_user_avatar_on_homepage", 1) != 0;
         if (AvatarViewMixin.isAvatarSupported(this) && !showMultiUserAvatar) {
             avatarView.setVisibility(View.VISIBLE);
             getLifecycle().addObserver(new AvatarViewMixin(this, avatarView));
-
             if (mIsEmbeddingActivityEnabled) {
                 avatarTwoPaneView.setVisibility(View.VISIBLE);
                 getLifecycle().addObserver(new AvatarViewMixin(this, avatarTwoPaneView));

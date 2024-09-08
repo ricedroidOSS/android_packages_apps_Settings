@@ -282,10 +282,11 @@ public class TopLevelSettings extends DashboardFragment implements SplitLayoutLi
             @Override
             public void doForEach(Preference preference) {
                 if (preference instanceof HomepagePreferenceLayout) {
-                    ((HomepagePreferenceLayout) preference).getHelper()
-                            .setIconPaddingStart(mIconPaddingStart);
-                    ((HomepagePreferenceLayout) preference).getHelper()
-                            .setTextPaddingStart(mTextPaddingStart);
+                    HomepagePreferenceLayout homePref = ((HomepagePreferenceLayout) preference);
+                    if (homePref.getHelper() != null) {
+                        homePref.getHelper().setIconPaddingStart(mIconPaddingStart);
+                        homePref.getHelper().setTextPaddingStart(mTextPaddingStart);
+                    }
                 }
             }
         });

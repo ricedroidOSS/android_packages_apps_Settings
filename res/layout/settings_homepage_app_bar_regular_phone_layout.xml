@@ -28,9 +28,8 @@
         android:layout_marginTop="@dimen/homepage_title_margin_top"
         android:orientation="horizontal">
 
-        <TextView
+        <com.crdroid.settings.utils.SettingsDashboardTextView
             android:id="@+id/homepage_title"
-            android:text="@string/settings_label"
             style="@style/HomepageTitleText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
