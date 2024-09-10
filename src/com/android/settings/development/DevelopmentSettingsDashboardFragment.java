@@ -645,7 +645,6 @@ public class DevelopmentSettingsDashboardFragment extends RestrictedDashboardFra
         controllers.add(new OemUnlockPreferenceController(context, activity, fragment));
         controllers.add(new Enable16kPagesPreferenceController(context, fragment));
         controllers.add(new PictureColorModePreferenceController(context, lifecycle));
-        controllers.add(new WebViewAppPreferenceController(context));
         controllers.add(new CoolColorTemperaturePreferenceController(context));
         controllers.add(new DisableAutomaticUpdatesPreferenceController(context));
         controllers.add(new SelectDSUPreferenceController(context));
