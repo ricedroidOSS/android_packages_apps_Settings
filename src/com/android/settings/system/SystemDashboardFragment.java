@@ -55,7 +55,15 @@ public class SystemDashboardFragment extends DashboardFragment {
         if (getVisiblePreferenceCount(screen) == screen.getInitialExpandedChildrenCount() + 1) {
             screen.setInitialExpandedChildrenCount(Integer.MAX_VALUE);
         }
-        PreferenceUtils.setLayoutResources(getActivity(), PreferenceUtils.getAllPreferences(screen));
+        PreferenceUtils.setupExtraPreferences(
+            Arrays.asList(getResources().getStringArray(R.array.system_dashboard_top_prefs)),
+            Arrays.asList(getResources().getStringArray(R.array.system_dashboard_middle_prefs)),
+            Arrays.asList(getResources().getStringArray(R.array.system_dashboard_bottom_prefs)),
+            Arrays.asList(getResources().getStringArray(R.array.system_dashboard_solo_prefs)),
+            getPreferenceScreen(),
+            getActivity(),
+            true
+        );
     }
 
     @Override

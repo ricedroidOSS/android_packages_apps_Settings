@@ -24,7 +24,7 @@
         android:key="language_input_settings"
         android:title="@string/language_settings"
         android:icon="@drawable/ic_settings_language"
-        android:order="-260"
+        android:order="-259"
         android:fragment="com.android.settings.language.LanguageAndInputSettings"
         settings:controller="com.android.settings.language.LanguageAndInputPreferenceController"/>
 
@@ -66,7 +66,7 @@
         android:key="select_webview_provider"
         android:title="@string/select_webview_provider_title"
         android:dialogTitle="@string/select_webview_provider_dialog_title"
-        android:order="-246"
+        android:order="1003"
         android:fragment="com.android.settings.webview.WebViewAppPicker" />
 
     <Preference
@@ -117,9 +117,9 @@
 
     <com.android.settings.spa.preference.ComposePreference
         android:key="developer_options"
-        android:order="-40"
+        android:order="1002"
         settings:controller="com.android.settings.system.DeveloperOptionsController"
-        settings:position="middle"/>
+        settings:position="solo"/>
 
     <Preference
         android:key="reset_dashboard"

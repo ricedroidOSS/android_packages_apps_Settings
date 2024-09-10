@@ -31,7 +31,7 @@
         android:touchscreenBlocksFocus="false"
         android:nextFocusForward="@+id/homepage_container"
         android:contentInsetStartWithNavigation="@dimen/search_bar_content_inset">
-        <TextView
+        <com.crdroid.settings.utils.SettingsSearchTextView
             android:id="@+id/search_bar_title"
             style="@style/TextAppearance.SearchBar"
             android:layout_width="wrap_content"
