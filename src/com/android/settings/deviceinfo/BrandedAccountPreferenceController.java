@@ -71,11 +71,7 @@ public class BrandedAccountPreferenceController extends BasePreferenceController
         } else {
             accountPreference.setSummary(getAccountSummary(mAccounts.length));
         }
-        if (!SubscriptionUtil.isSimHardwareVisible(mContext)) {
-            accountPreference.setLayoutResource(AdaptivePreferenceUtils.getLayoutResourceId(mContext, "solo", false));
-        } else {
-            accountPreference.setLayoutResource(AdaptivePreferenceUtils.getLayoutResourceId(mContext, "top", false));
-        }
+        accountPreference.setLayoutResource(AdaptivePreferenceUtils.getLayoutResourceId(mContext, "solo", false));
     }
 
     @Override

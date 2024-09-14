@@ -110,10 +110,10 @@ public class PhoneNumberPreferenceController extends BasePreferenceController {
             simStatusPreference.setSummary(getSummary());
             simStatusPreference.setIcon(R.drawable.ic_numbers);
             if (mTelephonyManager.getPhoneCount() < 2) {
-                simStatusPreference.setLayoutResource(AdaptivePreferenceUtils.getLayoutResourceId(mContext, "bottom", false));
+                simStatusPreference.setLayoutResource(AdaptivePreferenceUtils.getLayoutResourceId(mContext, "solo", false));
             } else {
                 if (simSlotNumber == 0) {
-                    simStatusPreference.setLayoutResource(AdaptivePreferenceUtils.getLayoutResourceId(mContext, "middle", false));
+                    simStatusPreference.setLayoutResource(AdaptivePreferenceUtils.getLayoutResourceId(mContext, "top", false));
                 } else {
                     simStatusPreference.setLayoutResource(AdaptivePreferenceUtils.getLayoutResourceId(mContext, "bottom", false));
                 }

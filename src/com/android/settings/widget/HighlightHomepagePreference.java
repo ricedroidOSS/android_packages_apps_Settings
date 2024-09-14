@@ -136,6 +136,13 @@ public class HighlightHomepagePreference extends HomepagePreference implements
     private static class HighlightCardAdapter extends RecyclerView.Adapter<HighlightCardAdapter.HighlightCardViewHolder> {
 
         private final List<HighlightCard> mHighlightCards;
+        private static final int[] HIGHLIGHT_CARD_STYLES = {
+                R.layout.highlight_card_default,
+                R.layout.highlight_card,
+                R.layout.highlight_card_material,
+                R.layout.highlight_card_oos,
+                R.layout.highlight_card_colorful
+        };
 
         public HighlightCardAdapter(List<HighlightCard> highlightCards) {
             mHighlightCards = highlightCards;
@@ -144,7 +151,9 @@ public class HighlightHomepagePreference extends HomepagePreference implements
         @NonNull
         @Override
         public HighlightCardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.highlight_card, parent, false);
+            Context context = parent.getContext();
+            int theme = Settings.System.getInt(context.getContentResolver(), "settings_theme_style", 0);
+            View view = LayoutInflater.from(context).inflate(HIGHLIGHT_CARD_STYLES[theme], parent, false);
             return new HighlightCardViewHolder(view);
         }
 

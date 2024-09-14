@@ -117,6 +117,7 @@
         <com.android.settings.preferences.ui.AdaptivePreference
             android:title="@string/radio_info_title"
             android:key="radio_info_settings"
+            android:icon="@drawable/ic_phone_ring"
             settings:position="top"
             android:order="6">
             <intent android:action="android.intent.action.MAIN"
