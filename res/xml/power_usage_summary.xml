@@ -155,6 +155,7 @@
         settings:interval="1"
         android:defaultValue="80"
         android:dependency="health_charge_enabled"
+        settings:controller="com.android.settings.fuelgauge.HealthyChargeController"
         android:order="998" />
 
     <com.crdroid.settings.preferences.SystemSettingSwitchPreference
