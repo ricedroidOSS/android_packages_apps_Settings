@@ -50,6 +50,15 @@
         android:key="top_level_personalize_category"
         android:layout="@layout/settingslib_preference_category_no_title">
         <com.android.settings.widget.HomepagePreference
+            android:fragment="com.rising.settings.PersonalizationsFragment"
+            android:icon="@drawable/ic_settings_cogs"
+            android:key="top_level_personalizations"
+            android:order="-61"
+            android:title="@string/rising_settings_title"
+            android:summary="@string/rising_settings_summary"
+            settings:controller="com.rising.settings.TopLevelSettingsPreferenceController"/>
+
+        <com.android.settings.widget.HomepagePreference
             android:fragment="com.android.settings.applications.AppDashboardFragment"
             android:icon="@drawable/ic_apps_filled"
             android:key="top_level_apps"

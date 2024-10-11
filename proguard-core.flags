@@ -1,0 +1,2 @@
+# Personalizations
+-keep class com.rising.settings.**

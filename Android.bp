@@ -42,6 +42,9 @@ java_library {
     libs: [
         "app-compat-annotations",
     ],
+    optimize: {
+        proguard_flags_files: ["proguard-core.flags"],
+    },
 }
 
 android_library {
@@ -57,17 +60,21 @@ android_library {
         "src/**/*.kt",
         "VendorSupport/src/**/*.java",
         "VendorSupport/src/**/*.kt",
+        "Personalizations/src/**/*.java",
+        "Personalizations/src/**/*.kt",
     ],
     exclude_srcs: [
         "src/com/android/settings/biometrics/fingerprint2/lib/**/*.kt",
     ],
     use_resource_processor: true,
+    
+    aaptflags: ["--extra-packages com.rising.settings"],
 
     resource_dirs: [
         "res",
         "res-export", // for external usage
         "res-product",
-        "VendorSupport/res",
+        "Personalizations/res",
     ],
 
     static_libs: [
@@ -140,8 +147,13 @@ android_library {
         "telephony-common",
         "ims-common",
     ],
+
     flags_packages: [
         "android.app.flags-aconfig",
+    ],
+    
+    additional_manifests: [
+        "RisingManifest.xml"
     ],
 }
 
