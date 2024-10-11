@@ -55,16 +55,21 @@ android_library {
     srcs: [
         "src/**/*.java",
         "src/**/*.kt",
+        "VendorSupport/src/**/*.java",
+        "VendorSupport/src/**/*.kt",
     ],
     exclude_srcs: [
         "src/com/android/settings/biometrics/fingerprint2/lib/**/*.kt",
     ],
     use_resource_processor: true,
+
     resource_dirs: [
         "res",
         "res-export", // for external usage
         "res-product",
+        "VendorSupport/res",
     ],
+
     static_libs: [
         // External dependencies
         "androidx.navigation_navigation-fragment-ktx",
