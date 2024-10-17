@@ -55,6 +55,7 @@ public class GestureNavigationSettingsFragment extends DashboardFragment {
     private static final String GESTURE_NAVBAR_LENGTH_KEY = "gesture_navbar_length_preference";
     private static final String GESTURE_BACK_HEIGHT_KEY = "gesture_back_height";
     private static final String GESTURE_NAVBAR_RADIUS_KEY = "gesture_navbar_radius_preference";
+    private static final String NAVIGATION_BAR_RADIUS_KEY = "gesture_navbar_radius_preference";
 
     private WindowManager mWindowManager;
     private BackGestureIndicatorView mIndicatorView;
@@ -103,6 +104,8 @@ public class GestureNavigationSettingsFragment extends DashboardFragment {
         if (isTaskbarEnabled) {
             getPreferenceScreen().removePreference(
                     getPreferenceScreen().findPreference(GESTURE_NAVBAR_LENGTH_KEY));
+            getPreferenceScreen().removePreference(
+                    getPreferenceScreen().findPreference(NAVIGATION_BAR_RADIUS_KEY));
         }
     }
 
