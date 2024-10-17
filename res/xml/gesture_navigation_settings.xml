@@ -62,13 +62,6 @@
         android:defaultValue="true"
         settings:position="none" />
 
-    <com.android.settings.preferences.SecureSettingSwitchPreference
-        android:key="back_gesture_haptic"
-        android:title="@string/back_gesture_haptic_title"
-        android:summary="@string/back_gesture_haptic_summary"
-        android:defaultValue="true"
-        settings:position="none" />
-
     <PreferenceCategory
         android:key="assistant_gesture_category"
         android:persistent="false"
