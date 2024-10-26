@@ -260,6 +260,7 @@
             android:title="@string/show_touches"
             android:summary="@string/show_touches_summary"
             android:defaultValue="false"
+            settings:position="none"
             />
 
         <ListPreference
