@@ -254,6 +254,14 @@
             android:defaultValue="false"
             settings:requiresFeature="lineagehardware:FEATURE_HIGH_TOUCH_SENSITIVITY" />
 
+        <!-- show touches -->
+        <com.android.settings.preferences.SystemSettingSwitchPreference
+            android:key="show_touches"
+            android:title="@string/show_touches"
+            android:summary="@string/show_touches_summary"
+            android:defaultValue="false"
+            />
+
         <ListPreference
             android:key="theme"
             android:title="@string/device_theme"
