@@ -20,6 +20,13 @@
     xmlns:settings="http://schemas.android.com/apk/res-auto"
     android:key="top_level_settings">
 
+    <!-- This category should hold uncategorized preferences such as OEM parts, unknown dashboard injects etc -->
+    <PreferenceCategory
+        android:order="-1001"
+        android:key="top_level_extras_category"
+        android:layout="@layout/settingslib_preference_category_no_title">
+    </PreferenceCategory>
+
     <PreferenceCategory
         android:order="-105"
         android:key="top_level_account_category"
