@@ -62,6 +62,13 @@
         android:defaultValue="true"
         settings:position="none" />
 
+    <com.android.settings.preferences.SecureSettingSwitchPreference
+        android:key="search_press_hold_nav_handle_enabled"
+        android:summary="@string/search_press_hold_gesture_summary"
+        android:title="@string/search_press_hold_gesture_title"
+        android:defaultValue="true"
+    />
+
     <PreferenceCategory
         android:key="assistant_gesture_category"
         android:persistent="false"
