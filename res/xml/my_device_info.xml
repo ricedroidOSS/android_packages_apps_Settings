@@ -21,69 +21,47 @@
     android:key="my_device_info_pref_screen"
     android:title="@string/about_settings">
 
-    <PreferenceCategory
-        android:key="my_device_category"
+    <com.android.settingslib.widget.LayoutPreference
+        android:key="banner_logo"
+        android:layout="@layout/rising_banner"
+        android:order="-999"
+        settings:enableCopying="true"
+        android:selectable="true"/>
+
+    <com.android.settingslib.widget.LayoutPreference
+        android:key="my_device_sw_header"
+        android:order="-998"
+        android:layout="@layout/about_device_info_sw"
         android:selectable="false"
-        android:title="@string/my_device_category_title">
+        settings:isPreferenceVisible="true"/>
 
-        <com.android.settingslib.widget.LayoutPreference
-            android:key="banner_logo"
-            android:layout="@layout/rising_banner"
-            android:order="-999"
-            settings:enableCopying="true"
-            android:selectable="true"/>
-
-        <!-- Device name -->
-        <com.android.settings.widget.ValidatedEditTextPreference
-            android:key="device_name"
-            android:order="-998"
-            android:icon="@drawable/ic_heart"
-            android:title="@string/my_device_info_device_name_preference_title"
-            android:summary="@string/summary_placeholder"
-            settings:controller="com.android.settings.deviceinfo.DeviceNamePreferenceController"
-            settings:enableCopying="true"/>
-
-        <Preference
-            android:key="rom_build_status"
-            settings:layout="@layout/top_level_preference_rom_status"
-            android:order="-997"
-            settings:enableCopying="true"
-            android:selectable="true"/>
-
-    </PreferenceCategory>
-
-    <PreferenceCategory
-        android:key="my_device_category_more"
+    <com.android.settingslib.widget.LayoutPreference
+        android:key="my_device_hw_header"
+        android:order="-995"
+        android:layout="@layout/about_device_info_hw"
         android:selectable="false"
-        android:title="@string/my_device_category_more_title">
+        settings:isPreferenceVisible="true"/>
 
-        <com.android.settingslib.widget.LayoutPreference
-            android:key="my_device_sw_header"
-            android:order="-996"
-            android:layout="@layout/about_device_info_sw"
-            android:selectable="false"
-            settings:isPreferenceVisible="true"/>
-
-        <com.android.settingslib.widget.LayoutPreference
-            android:key="my_device_hw_header"
-            android:order="-995"
-            android:layout="@layout/about_device_info_hw"
-            android:selectable="false"
-            settings:isPreferenceVisible="true"/>
-
-        <com.android.settingslib.widget.LayoutPreference
-            android:key="my_device_info_header"
-            android:order="-994"
-            android:layout="@layout/about_device_info"
-            android:selectable="false"
-            settings:isPreferenceVisible="false"/>
-
-    </PreferenceCategory>
+    <com.android.settingslib.widget.LayoutPreference
+        android:key="my_device_info_header"
+        android:order="-994"
+        android:layout="@layout/about_device_info"
+        android:selectable="false"
+        settings:isPreferenceVisible="false"/>
 
     <PreferenceCategory
         android:key="basic_info_category"
         android:selectable="false"
         android:title="@string/my_device_info_basic_info_category_title">
+
+        <!-- Device name -->
+        <com.android.settings.widget.ValidatedEditTextPreference
+            android:key="device_name"
+            android:order="-993"
+            android:title="@string/my_device_info_device_name_preference_title"
+            android:summary="@string/summary_placeholder"
+            settings:controller="com.android.settings.deviceinfo.DeviceNamePreferenceController"
+            settings:enableCopying="true"/>
 
         <!-- Account name -->
         <Preference
