@@ -67,6 +67,7 @@
         android:summary="@string/search_press_hold_gesture_summary"
         android:title="@string/search_press_hold_gesture_title"
         android:defaultValue="true"
+        settings:position="none"
     />
 
     <PreferenceCategory
@@ -92,11 +93,13 @@
             android:key="lock_immersive_sysui"
             android:title="@string/lock_immersive_system_ui_title"
             android:summary="@string/lock_immersive_system_ui_summary"
+            settings:position="none"
         />
         <com.android.settings.preferences.SecureSettingSwitchPreference
             android:key="lock_edge_back_gesture"
             android:title="@string/lock_edge_back_gesture_title"
             android:summary="@string/lock_edge_back_gesture_summary"
+            settings:position="none"
         />
 
     </PreferenceCategory>
