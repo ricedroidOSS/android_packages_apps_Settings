@@ -19,6 +19,7 @@ package com.android.settings.widget;
 import android.content.Context;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothProfile;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
@@ -160,8 +161,10 @@ public class HomepagePreference extends Preference implements
         if (bluetoothAdapter != null && bluetoothAdapter.isEnabled()) {
             Set<BluetoothDevice> pairedDevices = bluetoothAdapter.getBondedDevices();
             for (BluetoothDevice device : pairedDevices) {
-                if (bluetoothAdapter.getProfileConnectionState(BluetoothAdapter.STATE_CONNECTED)
-                        == BluetoothAdapter.STATE_CONNECTED) {
+                if (bluetoothAdapter.getProfileConnectionState(BluetoothProfile.HEADSET) == BluetoothProfile.STATE_CONNECTED ||
+                    bluetoothAdapter.getProfileConnectionState(BluetoothProfile.A2DP) == BluetoothProfile.STATE_CONNECTED ||
+                    bluetoothAdapter.getProfileConnectionState(BluetoothProfile.HEARING_AID) == BluetoothProfile.STATE_CONNECTED ||
+                    bluetoothAdapter.getProfileConnectionState(BluetoothProfile.LE_AUDIO) == BluetoothProfile.STATE_CONNECTED) {
                     return device.getName();
                 }
             }
