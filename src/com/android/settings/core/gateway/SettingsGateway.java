@@ -411,6 +411,11 @@ public class SettingsGateway {
             LockScreen.class.getName(),
             Themes.class.getName(),
             Toolbox.class.getName(),
+            MonetSettings.class.getName(),
+            com.rising.settings.fragments.ui.fonts.FontPickerPreview.class.getName(),
+            Notifications.class.getName(),
+            Sound.class.getName(),
+            com.rising.settings.fragments.ui.IconShapes.class.getName(),
             SmartPixels.class.getName(),
             RunningServices.class.getName()
     };
@@ -463,6 +468,11 @@ public class SettingsGateway {
             Settings.PersonalizationsLockscreenActivity.class.getName(),
             Settings.PersonalizationsToolboxActivity.class.getName(),
             Settings.PersonalizationsThemesActivity.class.getName(),
+            Settings.PersonalizationsColorsActivity.class.getName(),
+            Settings.PersonalizationsFontsActivity.class.getName(),
+            Settings.PersonalizationsSoundsActivity.class.getName(),
+            Settings.PersonalizationsIconsActivity.class.getName(),
+            Settings.PersonalizationsNotificationsActivity.class.getName(),
             Settings.SmartPixelsActivity.class.getName(),
             Settings.DevRunningServicesActivity.class.getName()
     };

@@ -64,6 +64,46 @@
             <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
                        android:value="com.rising.settings.fragments.Themes" />
         </activity>
+        <!-- Monet Settings -->
+        <activity android:name="Settings$PersonalizationsColorsActivity"
+                  android:label="@string/colors_title"
+                  android:icon="@drawable/ic_color_bucket"
+                  android:exported="true">
+            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                       android:value="com.rising.settings.fragments.MonetSettings" />
+        </activity>
+        <!-- Font Picker -->
+        <activity android:name="Settings$PersonalizationsFontsActivity"
+                  android:label="@string/fonts_title"
+                  android:icon="@drawable/ic_color_bucket"
+                  android:exported="true">
+            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                       android:value="com.rising.settings.fragments.ui.fonts.FontPickerPreview" />
+        </activity>
+        <!-- Sounds -->
+        <activity android:name="Settings$PersonalizationsSoundsActivity"
+                  android:label="@string/sound_title"
+                  android:icon="@drawable/ic_color_bucket"
+                  android:exported="true">
+            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                       android:value="com.rising.settings.fragments.Sound" />
+        </activity>
+        <!-- Icon Shapes -->
+        <activity android:name="Settings$PersonalizationsIconsActivity"
+                  android:label="@string/theme_customization_icon_shape_title"
+                  android:icon="@drawable/ic_color_bucket"
+                  android:exported="true">
+            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                       android:value="com.rising.settings.fragments.ui.IconShapes" />
+        </activity>
+        <!-- Notifications -->
+        <activity android:name="Settings$PersonalizationsNotificationsActivity"
+                  android:label="@string/notifications_title"
+                  android:icon="@drawable/ic_color_bucket"
+                  android:exported="true">
+            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                       android:value="com.rising.settings.fragments.Notifications" />
+        </activity>
         <!-- Changelog -->
         <activity android:name="com.rising.settings.fragments.about.ChangelogActivity"
                 android:label="@string/changelog_rising_title"

@@ -521,6 +521,11 @@ public class Settings extends SettingsActivity {
     public static class PersonalizationsThemesActivity extends SettingsActivity {}
     public static class PersonalizationsLockscreenActivity extends SettingsActivity {}
     public static class PersonalizationsToolboxActivity extends SettingsActivity {}
+    public static class PersonalizationsColorsActivity extends SettingsActivity {}
+    public static class PersonalizationsFontsActivity extends SettingsActivity {}
+    public static class PersonalizationsSoundsActivity extends SettingsActivity {}
+    public static class PersonalizationsIconsActivity extends SettingsActivity {}
+    public static class PersonalizationsNotificationsActivity extends SettingsActivity {}
 
     public static class SmartPixelsActivity extends SettingsActivity {}
     public static class DevRunningServicesActivity extends SettingsActivity { /* empty */ }
