@@ -104,6 +104,38 @@
             <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
                        android:value="com.rising.settings.fragments.Notifications" />
         </activity>
+        <!-- Status Bar -->
+        <activity android:name="Settings$PersonalizationsStatusBarActivity"
+                  android:label="@string/sb_settings_title"
+                  android:icon="@drawable/ic_color_bucket"
+                  android:exported="true">
+            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                       android:value="com.rising.settings.fragments.StatusBar" />
+        </activity>
+        <!-- QuickSettings -->
+        <activity android:name="Settings$PersonalizationsQuickSettingsActivity"
+                  android:label="@string/quicksettings_title"
+                  android:icon="@drawable/ic_color_bucket"
+                  android:exported="true">
+            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                       android:value="com.rising.settings.fragments.QuickSettings" />
+        </activity>
+        <!-- Gestures -->
+        <activity android:name="Settings$PersonalizationsGesturesActivity"
+                  android:label="@string/gestures_title"
+                  android:icon="@drawable/ic_color_bucket"
+                  android:exported="true">
+            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                       android:value="com.rising.settings.fragments.Gestures" />
+        </activity>
+        <!-- Clock Faces -->
+        <activity android:name="Settings$PersonalizationsClockFacesActivity"
+                  android:label="@string/theme_customization_lock_clock_title"
+                  android:icon="@drawable/ic_color_bucket"
+                  android:exported="true">
+            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                       android:value="com.rising.settings.fragments.lockscreen.LockClockFontsPickerPreview" />
+        </activity>
         <!-- Changelog -->
         <activity android:name="com.rising.settings.fragments.about.ChangelogActivity"
                 android:label="@string/changelog_rising_title"

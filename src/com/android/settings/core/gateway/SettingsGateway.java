@@ -416,7 +416,11 @@ public class SettingsGateway {
             Notifications.class.getName(),
             Sound.class.getName(),
             com.rising.settings.fragments.ui.IconShapes.class.getName(),
+            StatusBar.class.getName(),
+            QuickSettings.class.getName(),
+            Gestures.class.getName(),
             SmartPixels.class.getName(),
+            com.rising.settings.fragments.lockscreen.LockClockFontsPickerPreview.class.getName(),
             RunningServices.class.getName()
     };
 
@@ -473,6 +477,10 @@ public class SettingsGateway {
             Settings.PersonalizationsSoundsActivity.class.getName(),
             Settings.PersonalizationsIconsActivity.class.getName(),
             Settings.PersonalizationsNotificationsActivity.class.getName(),
+            Settings.PersonalizationsStatusBarActivity.class.getName(),
+            Settings.PersonalizationsQuickSettingsActivity.class.getName(),
+            Settings.PersonalizationsGesturesActivity.class.getName(),
+            Settings.PersonalizationsClockFacesActivity.class.getName(),
             Settings.SmartPixelsActivity.class.getName(),
             Settings.DevRunningServicesActivity.class.getName()
     };
