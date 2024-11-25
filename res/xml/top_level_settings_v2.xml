@@ -21,17 +21,17 @@
     android:key="top_level_settings">
 
     <!-- This category should hold uncategorized preferences such as OEM parts, unknown dashboard injects etc -->
-    <PreferenceCategory
+    <com.android.settings.preferences.AutoHidePreferenceCategory
         android:order="-1001"
         android:key="top_level_extras_category"
         android:layout="@layout/settingslib_preference_category_no_title">
-    </PreferenceCategory>
+    </com.android.settings.preferences.AutoHidePreferenceCategory>
 
-    <PreferenceCategory
+    <com.android.settings.preferences.AutoHidePreferenceCategory
         android:order="-105"
         android:key="top_level_account_category"
         android:layout="@layout/settingslib_preference_category_no_title">
-    </PreferenceCategory>
+    </com.android.settings.preferences.AutoHidePreferenceCategory>
 
     <PreferenceCategory
         android:order="-130"
