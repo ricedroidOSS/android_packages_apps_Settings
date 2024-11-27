@@ -28,9 +28,17 @@
     </com.android.settings.preferences.AutoHidePreferenceCategory>
 
     <com.android.settings.preferences.AutoHidePreferenceCategory
-        android:order="-105"
+        android:order="-152"
         android:key="top_level_account_category"
         android:layout="@layout/settingslib_preference_category_no_title">
+        
+        <com.android.settings.widget.AvatarHomePagePreference
+            android:icon="@drawable/ic_heart"
+            android:key="top_level_usercard"
+            android:order="-152"
+            android:title="@string/user_card_title"
+            android:summary="@string/user_card_summary"/>
+
     </com.android.settings.preferences.AutoHidePreferenceCategory>
 
     <PreferenceCategory

@@ -92,7 +92,8 @@ public class HomepagePreference extends Preference implements
         if (mHolder == null) return;
         String key = getKey();
         View summaryView = mHolder.findViewById(android.R.id.summary);
-        if ("top_level_network".equals(key)|| "top_level_connected_devices".equals(key)) {
+        if ("top_level_network".equals(key)|| "top_level_connected_devices".equals(key)
+                || "top_level_usercard".equals(key)) {
             summaryView.setVisibility(View.VISIBLE);
             setSummaryLayoutParams(summaryView, true);
         } else {
