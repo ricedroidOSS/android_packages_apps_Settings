@@ -166,7 +166,9 @@ public class HomepagePreference extends Preference implements
                     bluetoothAdapter.getProfileConnectionState(BluetoothProfile.A2DP) == BluetoothProfile.STATE_CONNECTED ||
                     bluetoothAdapter.getProfileConnectionState(BluetoothProfile.HEARING_AID) == BluetoothProfile.STATE_CONNECTED ||
                     bluetoothAdapter.getProfileConnectionState(BluetoothProfile.LE_AUDIO) == BluetoothProfile.STATE_CONNECTED) {
-                    return device.getName();
+                    if (device.isConnected()) {
+                        return device.getName();
+                    }
                 }
             }
         }
