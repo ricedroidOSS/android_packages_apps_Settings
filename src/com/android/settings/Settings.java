@@ -531,6 +531,14 @@ public class Settings extends SettingsActivity {
     public static class PersonalizationsQuickSettingsActivity extends SettingsActivity {}
     public static class PersonalizationsGesturesActivity extends SettingsActivity {}
     public static class PersonalizationsClockFacesActivity extends SettingsActivity {}
+    public static class PersonalizationsWidgetsActivity extends SettingsActivity {}
+    public static class PersonalizationsPDActivity extends SettingsActivity {}
+    public static class PersonalizationsAODActivity extends SettingsActivity {}
+    public static class PersonalizationsDWActivity extends SettingsActivity {}
+    public static class PersonalizationsBSActivity extends SettingsActivity {}
+    public static class PersonalizationsIconPackActivity extends SettingsActivity {}
+    public static class PersonalizationsSettingsUIActivity extends SettingsActivity {}
+    public static class PersonalizationsWSActivity extends SettingsActivity {}
 
     public static class SmartPixelsActivity extends SettingsActivity {}
     public static class DevRunningServicesActivity extends SettingsActivity { /* empty */ }

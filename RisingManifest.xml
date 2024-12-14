@@ -149,6 +149,79 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        
+        <!-- LW -->
+        <activity android:name="Settings$PersonalizationsWidgetsActivity"
+                  android:label="@string/lockscreen_widgets_title"
+                  android:icon="@drawable/ic_color_bucket"
+                  android:exported="true">
+            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                       android:value="com.rising.settings.fragments.lockscreen.LockScreenWidgets" />
+        </activity>
+        
+        <!-- PD -->
+        <activity android:name="Settings$PersonalizationsPDActivity"
+                  android:label="@string/peek_display_notifications_title"
+                  android:icon="@drawable/ic_color_bucket"
+                  android:exported="true">
+            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                       android:value="com.rising.settings.fragments.lockscreen.PeekDisplay" />
+        </activity>
+        
+        <!-- AOD -->
+        <activity android:name="Settings$PersonalizationsAODActivity"
+                  android:label="@string/doze_display_title"
+                  android:icon="@drawable/ic_color_bucket"
+                  android:exported="true">
+            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                       android:value="com.rising.settings.fragments.lockscreen.doze.AODSettings" />
+        </activity>
+        
+        <!-- DW -->
+        <activity android:name="Settings$PersonalizationsDWActivity"
+                  android:label="@string/dw_wallpaper_enabled_title"
+                  android:icon="@drawable/ic_color_bucket"
+                  android:exported="true">
+            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                       android:value="com.rising.settings.fragments.WallpaperDepth" />
+        </activity>
+
+        <!-- BS -->
+        <activity android:name="Settings$PersonalizationsBSActivity"
+                  android:label="@string/theme_customization_icon_pack_title"
+                  android:icon="@drawable/ic_color_bucket"
+                  android:exported="true">
+            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                       android:value="com.rising.settings.fragments.BootAnimationSettings" />
+        </activity>
+        
+        <!-- IP -->
+        <activity android:name="Settings$PersonalizationsIconPackActivity"
+                  android:label="@string/theme_customization_signal_icon_title"
+                  android:icon="@drawable/ic_color_bucket"
+                  android:exported="true">
+            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                       android:value="com.rising.settings.fragments.ui.StatusbarIcons" />
+        </activity>
+        
+        <!-- SUI -->
+        <activity android:name="Settings$PersonalizationsSettingsUIActivity"
+                  android:label="@string/settings_ui_title"
+                  android:icon="@drawable/ic_color_bucket"
+                  android:exported="true">
+            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                       android:value="com.rising.settings.fragments.ui.Settings" />
+        </activity>
+        
+        <!-- WS -->
+        <activity android:name="Settings$PersonalizationsWSActivity"
+                  android:label="@string/wallpaper_settings_title"
+                  android:icon="@drawable/ic_color_bucket"
+                  android:exported="true">
+            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                       android:value="com.rising.settings.fragments.Wallpaper" />
+        </activity>
+
         <receiver
             android:name=".fuelgauge.PowerModeBootCompletedReceiver"
             android:enabled="true"
