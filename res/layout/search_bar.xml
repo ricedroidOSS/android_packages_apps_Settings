@@ -20,7 +20,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/search_bar_margin"
-    android:layout_marginBottom="8dp"
+    android:layout_marginBottom="20dp"
     android:layout_marginStart="@dimen/card_highlight_margin_start"
     android:layout_marginEnd="@dimen/card_highlight_margin_end">
 
@@ -48,7 +48,7 @@
                 android:paddingStart="12dp"
                 android:layout_gravity="start"
                 android:textSize="18sp"
-                android:textColor="@color/search_bar_icon_bg"
+                android:textColor="@color/top_level_preference_text_color_primary"
                 android:text="@string/search_homepage"/>
             <ImageView
                 android:id="@+id/search_icon"
@@ -56,19 +56,10 @@
                 android:layout_width="36dp"
                 android:layout_height="36dp"
                 android:layout_marginEnd="16dp"
-                android:tint="@color/search_bar_icon_bg"
+                android:tint="@color/top_level_preference_text_color_primary"
                 android:padding="8dp"
                 android:layout_gravity="end" />
         </Toolbar>
     </com.google.android.material.card.MaterialCardView>
-    <ImageView
-        android:id="@+id/account_avatar"
-        android:layout_width="@dimen/custom_avatar_length"
-        android:layout_height="@dimen/custom_avatar_length"
-        android:layout_marginStart="8dp"
-        android:visibility="invisible"
-        android:layout_gravity="end"
-        android:accessibilityTraversalAfter="@id/homepage_title"
-        android:contentDescription="@string/search_bar_account_avatar_content_description" />
 </LinearLayout>
 

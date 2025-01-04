@@ -16,5 +16,5 @@
 
 <ripple xmlns:android="http://schemas.android.com/apk/res/android"
         android:color="?android:attr/colorControlHighlight">
-    <item android:drawable="@color/search_bar_bg"/>
+    <item android:drawable="@color/settingslib_preference_bg_color"/>
 </ripple>

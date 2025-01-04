@@ -26,14 +26,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/homepage_title_margin_top"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
 
         <com.android.settings.utils.SettingsDashboardTextView
             android:id="@+id/homepage_title"
             android:text="@string/settings_label"
             style="@style/HomepageTitleText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <com.android.settings.utils.AvatarImageView
+            android:layout_width="@dimen/custom_avatar_length"
+            android:layout_height="@dimen/custom_avatar_length"
+            android:layout_marginEnd="24dp"
+            android:layout_gravity="center_vertical"
+            android:accessibilityTraversalAfter="@id/homepage_title"
+            android:contentDescription="@string/search_bar_account_avatar_content_description" />
     </LinearLayout>
 
     <FrameLayout
