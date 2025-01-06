@@ -76,6 +76,8 @@ public abstract class DashboardFragment extends SettingsPreferenceFragment
     public static final String CATEGORY = "category";
     private static final String TAG = "DashboardFragment";
     private static final long TIMEOUT_MILLIS = 50L;
+    
+    private int lastOrderIncrement = -1001;
 
     private static final List<String> ACCOUNT_INJECTED_KEYS = Arrays.asList(
     );
@@ -607,6 +609,8 @@ public abstract class DashboardFragment extends SettingsPreferenceFragment
                     } else if (SECURITY_PRIVACY_INJECTED_KEYS.contains(key)) {
                         group = screen.findPreference("top_level_security_privacy_category");
                     } else {
+                        KEY_ORDER.put(key, lastOrderIncrement);
+                        lastOrderIncrement = lastOrderIncrement - 1;
                         group = screen.findPreference("top_level_extras_category");
                     }
                     // Order the prefs within their respective category
