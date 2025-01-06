@@ -40,6 +40,14 @@
             android:touchscreenBlocksFocus="false"
             android:nextFocusForward="@+id/homepage_container"
             android:contentInsetStartWithNavigation="@dimen/search_bar_content_inset">
+            <ImageView
+                android:id="@+id/search_icon"
+                android:src="@drawable/ic_homepage_search"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:tint="@color/top_level_preference_text_color_primary"
+                android:padding="8dp"
+                android:layout_gravity="start" />
             <com.android.settings.utils.SettingsSearchTextView
                 android:id="@+id/search_action_bar_title"
                 style="@style/TextAppearance.SearchBar"
@@ -50,16 +58,6 @@
                 android:textSize="18sp"
                 android:textColor="@color/top_level_preference_text_color_primary"
                 android:text="@string/search_homepage"/>
-            <ImageView
-                android:id="@+id/search_icon"
-                android:src="@drawable/ic_homepage_search"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:layout_marginEnd="16dp"
-                android:tint="@color/top_level_preference_text_color_primary"
-                android:padding="8dp"
-                android:layout_gravity="end" />
         </Toolbar>
     </com.google.android.material.card.MaterialCardView>
 </LinearLayout>
-

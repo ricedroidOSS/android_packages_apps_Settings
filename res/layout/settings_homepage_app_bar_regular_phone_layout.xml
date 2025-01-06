@@ -40,7 +40,7 @@
         <com.android.settings.utils.AvatarImageView
             android:layout_width="@dimen/custom_avatar_length"
             android:layout_height="@dimen/custom_avatar_length"
-            android:layout_marginEnd="24dp"
+            android:layout_marginEnd="@dimen/avatar_margin_end"
             android:layout_gravity="center_vertical"
             android:accessibilityTraversalAfter="@id/homepage_title"
             android:contentDescription="@string/search_bar_account_avatar_content_description" />
