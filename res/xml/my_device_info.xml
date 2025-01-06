@@ -177,13 +177,12 @@
             settings:controller="com.android.settings.deviceinfo.firmwareversion.FirmwareVersionPreferenceController"/>
 
         <!-- Lineage version -->
-        <Preference
+        <com.android.settings.utils.PlatlogoPreference
             android:key="lineage_os_version"
             android:order="43"
             android:title="@string/firmware_name_version"
             android:summary="@string/summary_placeholder"
-            settings:enableCopying="true"
-            settings:controller="com.android.settings.deviceinfo.firmwareversion.LineageVersionDetailPreferenceController"/>
+            settings:enableCopying="true"/>
     </PreferenceCategory>
 
     <PreferenceCategory

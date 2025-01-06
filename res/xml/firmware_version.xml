@@ -31,12 +31,11 @@
         settings:controller="com.android.settings.deviceinfo.firmwareversion.FirmwareVersionDetailPreferenceController"/>
 
     <!-- Lineage version -->
-    <Preference
+    <com.android.settings.utils.PlatlogoPreference
         android:key="lineage_version"
         android:title="@string/firmware_name_version"
         android:summary="@string/summary_placeholder"
-        settings:enableCopying="true"
-        settings:controller="com.android.settings.deviceinfo.firmwareversion.LineageVersionDetailPreferenceController"/>
+        settings:enableCopying="true"/>
 
     <!-- Security patch -->
     <Preference

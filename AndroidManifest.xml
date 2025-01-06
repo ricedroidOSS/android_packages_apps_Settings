@@ -5534,5 +5534,16 @@
             android:excludeFromRecents="true"
             android:taskAffinity="com.android.settings.applock"
             android:launchMode="singleTask" />
+            
+        <activity
+            android:name=".utils.PlatLogoActivity"
+            android:theme="@style/PlatLogo"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 </manifest>
