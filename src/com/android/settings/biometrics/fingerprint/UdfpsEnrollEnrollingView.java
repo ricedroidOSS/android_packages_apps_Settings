@@ -96,11 +96,11 @@ public class UdfpsEnrollEnrollingView extends GlifLayout {
         mUdfpsEnrollView.setVisibility(View.VISIBLE);
         setOnHoverListener();
     }
-
-    void setSecondaryButtonBackground(@ColorInt int color) {
+    
+    void setSecondaryButtonBackground(@ColorInt int color, boolean forced) {
         // Set the button background only when the button is not under udfps overlay to avoid UI
         // overlap.
-        if (!mIsLandscape || mShouldUseReverseLandscape) {
+        if ((!mIsLandscape || mShouldUseReverseLandscape) && !forced) {
             return;
         }
         final Button secondaryButtonView =
@@ -111,11 +111,16 @@ public class UdfpsEnrollEnrollingView extends GlifLayout {
         } else {
             secondaryButtonView.setGravity(Gravity.END);
         }
+        if (mHeaderView == null) return;
         mHeaderView.post(() -> {
             secondaryButtonView.setLayoutParams(
                     new LinearLayout.LayoutParams(mHeaderView.getMeasuredWidth(),
                             ViewGroup.LayoutParams.WRAP_CONTENT));
         });
+    } 
+
+    void setSecondaryButtonBackground(@ColorInt int color) {
+        setSecondaryButtonBackground(color, false);
     }
 
     private void initUdfpsEnrollView(FingerprintSensorPropertiesInternal udfpsProps,
